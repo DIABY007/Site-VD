@@ -70,7 +70,7 @@ const ConcertScheduleSection: React.FC = () => {
       </div>
 
       {/* LISTE TICKETS */}
-      <div className="flex flex-col relative w-full gap-[24px]">
+      <div className="flex flex-col relative w-full gap-[20px]">
         {events.map((event, index) => (
           <div key={event.id} className="ticket-card">
             {/* GAUCHE — INFOS + BARCODE */}
@@ -141,7 +141,7 @@ const ConcertScheduleSection: React.FC = () => {
         .ticket-card {
           display: flex;
           position: relative;
-          overflow: visible;
+          overflow: hidden;
           background: rgba(0, 0, 0, 0.4);
           border: 1px solid rgba(255, 255, 255, 0.1);
           min-height: 160px;
@@ -151,17 +151,18 @@ const ConcertScheduleSection: React.FC = () => {
         .divider {
           position: relative;
           width: 0;
-          border-right: 1px dashed rgba(255, 255, 255, 0.2);
+          border-right: 1px dashed rgba(255, 255, 255, 0.3);
           height: 100%;
         }
 
-        /* Les encoches (Vrais demi-cercles intérieurs) */
+        /* Les encoches (L'illusion d'optique par débordement) */
         .divider::before,
         .divider::after {
           content: '';
           position: absolute;
-          width: 20px;
-          height: 10px;
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
           background-color: #000;
           border: 1px solid rgba(255, 255, 255, 0.1);
           left: 0;
@@ -170,15 +171,11 @@ const ConcertScheduleSection: React.FC = () => {
         }
 
         .divider::before {
-          top: -1px;
-          border-radius: 0 0 10px 10px;
-          border-top: none;
+          top: -12px;
         }
 
         .divider::after {
-          bottom: -1px;
-          border-radius: 10px 10px 0 0;
-          border-bottom: none;
+          bottom: -12px;
         }
       `}</style>
     </section>
