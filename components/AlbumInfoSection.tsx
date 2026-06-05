@@ -17,13 +17,13 @@ const AlbumInfoSection: React.FC = () => {
           </div>
 
           {/* Zone cover album */}
-          <div className="relative mt-auto mb-auto w-[220px]">
+          <div className="relative mt-auto mb-auto w-[280px]">
             <div className="aspect-square relative overflow-hidden">
               <Image
                 src="/Image/Cover.jpg"
                 alt="Cover"
-                width={220}
-                height={220}
+                width={280}
+                height={280}
                 className="object-cover w-full h-full"
                 priority
               />
