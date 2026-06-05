@@ -18,20 +18,26 @@ interface Product {
 const products: Product[] = [
   {
     id: 1,
-    name: "KILLA MASK",
-    price: "$115.00",
-    shipsOn: "4 DAYS",
-    tags: ["ITEMS,", "OFFICIAL", "STICKER,", "BOX"],
+    name: "MASQUE KILLA",
+    price: "5000 FCFA",
+    shipsOn: "4 JOURS",
+    tags: ["ARTICLES,", "OFFICIEL", "STICKER,", "BOX"],
     image: "/Image/Merch.jpg",
   }
 ];
 
 /**
  * ShopSection Component
- * Reproduces the merchandise shop section.
- * Optimized: Product image and text pushed further to the right.
+ * Reproduced and personalized for VD Shop.
+ * Linked to WhatsApp for direct purchase.
  */
 const ShopSection: React.FC = () => {
+  const whatsappNumber = "22674855416"; // Assuming Burkina Faso code +226 based on Bobo-Dioulasso context
+  const getWhatsAppLink = (productName: string) => {
+    const message = encodeURIComponent(`Bonjour, je souhaite commander l'article : ${productName}`);
+    return `https://wa.me/${whatsappNumber}?text=${message}`;
+  };
+
   return (
     <section id="shop" className="relative w-full bg-[#000000] text-[#FFFFFF] font-sans px-8 py-20 flex flex-col items-center overflow-hidden">
       {/* Standardized 1400px Centered Container */}
@@ -56,7 +62,7 @@ const ShopSection: React.FC = () => {
             href="#" 
             className="text-white/55 text-[10px] uppercase tracking-[0.15em] underline underline-offset-[3px] hover:text-white transition-colors duration-200"
           >
-            SEE ALL ITEMS
+            VOIR TOUS LES ARTICLES
           </a>
         </div>
 
@@ -72,7 +78,7 @@ const ShopSection: React.FC = () => {
                 index !== products.length - 1 ? 'border-b border-white/10' : ''
               } items-stretch`}
             >
-              {/* COLONNE 1 — NOM + PRIX + SHIPS */}
+              {/* COLONNE 1 — NOM + PRIX + EXPÉDITION */}
               <div className="flex flex-col h-full uppercase">
                 <h3 className="text-[14px] font-[600] tracking-[0.08em] mb-[10px] text-white">
                   {product.name}
@@ -83,7 +89,7 @@ const ShopSection: React.FC = () => {
                 
                 <div className="mt-auto">
                   <p className="text-white/35 text-[9px] uppercase tracking-[0.15em] leading-none">
-                    SHIPS ON
+                    LIVRAISON EN
                   </p>
                   <p className="text-white/55 text-[9px] uppercase tracking-[0.12em] mt-1 whitespace-pre-line">
                     {product.shipsOn}
@@ -91,7 +97,7 @@ const ShopSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* COLONNE 2 — TAGS + BUY NOW */}
+              {/* COLONNE 2 — TAGS + ACHETER */}
               <div className="flex flex-col items-end h-full">
                 <div className="text-right mb-auto uppercase">
                   {product.tags.map((tag, i) => (
@@ -101,16 +107,22 @@ const ShopSection: React.FC = () => {
                   ))}
                 </div>
                 
-                <motion.button
-                  whileHover={{ scale: 1.05, backgroundColor: 'white', color: 'black' }}
-                  whileTap={{ scale: 0.95 }}
-                  className="border border-white/75 rounded-full px-[18px] py-[8px] text-[9px] uppercase tracking-[0.12em] text-white bg-transparent whitespace-nowrap transition-colors duration-200"
+                <a 
+                  href={getWhatsAppLink(product.name)}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  BUY NOW →
-                </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.05, backgroundColor: 'white', color: 'black' }}
+                    whileTap={{ scale: 0.95 }}
+                    className="border border-white/75 rounded-full px-[18px] py-[8px] text-[9px] uppercase tracking-[0.12em] text-white bg-transparent whitespace-nowrap transition-colors duration-200"
+                  >
+                    ACHETER →
+                  </motion.button>
+                </a>
               </div>
 
-              {/* COLONNE 3 — IMAGE PRODUIT (Poussée vers la droite) */}
+              {/* COLONNE 3 — IMAGE PRODUIT */}
               <div className="pl-16 pr-8 flex justify-end items-center">
                 <motion.div 
                   whileHover={{ scale: 1.05 }}
@@ -126,7 +138,7 @@ const ShopSection: React.FC = () => {
                 </motion.div>
               </div>
 
-              {/* COLONNE 4 — LIMITED EDITION (Plus à droite) */}
+              {/* COLONNE 4 — ÉDITION LIMITÉE */}
               <div className="pl-4 flex flex-col justify-start uppercase">
                 {product.description ? (
                   <>
@@ -141,9 +153,9 @@ const ShopSection: React.FC = () => {
                   </>
                 ) : (
                     <p className="text-white/30 text-[10px] tracking-[0.2em] leading-relaxed text-right">
-                        LIMITED EDITION<br />
-                        COLLECTORS ITEM<br />
-                        \\\ 2023
+                        ÉDITION LIMITÉE<br />
+                        ARTICLE COLLECTOR<br />
+                        \\\ 2025
                     </p>
                 )}
               </div>
@@ -151,16 +163,6 @@ const ShopSection: React.FC = () => {
           ))}
         </div>
       </motion.div>
-
-      <style jsx global>{`
-        @import url('https://fonts.cdnfonts.com/css/helvetica-neue-9');
-        
-        body {
-          font-family: 'Helvetica Neue', sans-serif;
-          margin: 0;
-          background-color: #000;
-        }
-      `}</style>
     </section>
   );
 };
