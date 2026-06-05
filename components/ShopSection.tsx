@@ -12,24 +12,6 @@ const products = [
     shipsOn: "4 DAYS",
     tags: ["ITEMS,", "OFFICIAL", "STICKER,", "BOX"],
     image: "/Image/Merch.jpg",
-  },
-  {
-    id: 2,
-    name: "EXORCIST SHORT SLEEVE",
-    price: "$55.00",
-    shipsOn: "JUNE 23, 2023",
-    tags: ["ITEMS,", "OFFICIAL", "STICKER,", "BOX"],
-    image: "/Image/Merch.jpg",
-  },
-  {
-    id: 3,
-    name: "IF LOOKS COULD KILL VINYL",
-    price: "$49.00",
-    shipsOn: "JUNE 16, 2023",
-    tags: ["ITEMS,", "OFFICIAL", "STICKER,", "BOX"],
-    image: "/Image/Merch.jpg",
-    description: "THE DESTROY LONELY, IF LOOKS COULD KILL 3LP VINYL IS COMPILED OF SONGS FLOATING OVER HAZY ELECTRIC GUITAR LINES WITH BLENDS OF SURREALISTIC SOUNDSCAPES.",
-    note: "LIMITED TO 4 PER CUSTOMER\nAVAILABLE TO US\nCUSTOMERS ONLY",
   }
 ];
 
