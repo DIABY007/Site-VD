@@ -76,11 +76,11 @@ const ConcertScheduleSection: React.FC = () => {
       {/* LISTE TICKETS */}
       <div className="flex flex-col relative w-full">
         {events.map((event, index) => (
-          <div key={event.id} className="w-full">
-            {/* Ticket Card */}
-            <div className="grid grid-cols-[62%_10%_28%] border border-white/18 rounded-[2px] relative min-h-[160px]">
-              {/* COLONNE 1 — INFOS ÉVÉNEMENT */}
-              <div className="flex flex-col justify-between p-7 pr-7">
+          <div key={event.id} className="ticket-card">
+            {/* GAUCHE — INFOS + BARCODE */}
+            <div className="flex flex-grow items-stretch">
+              {/* INFOS ÉVÉNEMENT */}
+              <div className="flex flex-col justify-between p-7 flex-grow">
                 <div>
                   <h3 className="text-[15px] font-[600] tracking-[0.08em] uppercase text-white mb-3">
                     {event.name}
@@ -101,38 +101,32 @@ const ConcertScheduleSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* COLONNE 2 — BARCODE */}
-              <div className="relative flex items-center justify-center border-l border-r border-dashed border-white/25">
+              {/* BARCODE */}
+              <div className="flex items-center justify-center px-4">
                 <Barcode />
               </div>
+            </div>
 
-              {/* COLONNE 3 — TICKET TYPE + CTA */}
-              <div className="flex flex-col justify-between items-end p-7">
-                <div className="text-right">
-                  {event.typeLines.map((line, i) => (
-                    <p key={i} className="text-[10px] uppercase tracking-[0.18em] text-white/70 leading-tight">
-                      {line}
-                    </p>
-                  ))}
-                </div>
+            {/* DIVIDER — La ligne de séparation avec les encoches */}
+            <div className="divider"></div>
 
-                <motion.button
-                  whileHover={{ backgroundColor: '#FFFFFF', color: '#000000' }}
-                  transition={{ duration: 0.2 }}
-                  className="border border-white/80 rounded-full px-4 py-[7px] text-[10px] uppercase tracking-[0.1em] text-white bg-transparent whitespace-nowrap mt-auto self-end"
-                >
-                  BUY NOW →
-                </motion.button>
+            {/* DROITE — TICKET TYPE + CTA */}
+            <div className="flex flex-col justify-between items-end p-7 w-[28%] shrink-0">
+              <div className="text-right">
+                {event.typeLines.map((line, i) => (
+                  <p key={i} className="text-[10px] uppercase tracking-[0.18em] text-white/70 leading-tight">
+                    {line}
+                  </p>
+                ))}
               </div>
 
-              {/* Cercle de découpe entre les 2 cards */}
-              {/* Positionné au bas de la première card / haut de la deuxième */}
-              {index === 0 && (
-                <div 
-                  style={{ left: 'calc(62% + 10%)', transform: 'translate(-50%, 50%)' }}
-                  className="absolute bottom-0 w-5 h-5 bg-black border border-white/20 rounded-full z-20" 
-                />
-              )}
+              <motion.button
+                whileHover={{ backgroundColor: '#FFFFFF', color: '#000000' }}
+                transition={{ duration: 0.2 }}
+                className="border border-white/80 rounded-full px-4 py-[7px] text-[10px] uppercase tracking-[0.1em] text-white bg-transparent whitespace-nowrap mt-auto self-end"
+              >
+                BUY NOW →
+              </motion.button>
             </div>
           </div>
         ))}
@@ -145,6 +139,47 @@ const ConcertScheduleSection: React.FC = () => {
           font-family: 'Helvetica Neue', sans-serif;
           margin: 0;
           background-color: #000;
+        }
+
+        /* LOGIQUE CSS POUR LE TICKET */
+        .ticket-card {
+          display: flex;
+          position: relative;
+          overflow: visible;
+          background: rgba(0, 0, 0, 0.4);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          min-height: 160px;
+          border-radius: 2px;
+        }
+
+        .divider {
+          position: relative;
+          width: 0;
+          border-right: 1px dashed rgba(255, 255, 255, 0.3);
+          height: 100%;
+        }
+
+        /* Les encoches (Le secret du composant) */
+        .divider::before,
+        .divider::after {
+          content: '';
+          position: absolute;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          background-color: #000; /* Fond identique au background global */
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          left: 0;
+          transform: translateX(-50%);
+          z-index: 10;
+        }
+
+        .divider::before {
+          top: -15px; /* Débordement haut */
+        }
+
+        .divider::after {
+          bottom: -15px; /* Débordement bas */
         }
       `}</style>
     </section>
