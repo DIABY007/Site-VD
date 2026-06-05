@@ -10,7 +10,7 @@ const events = [
     location: "ROTTERDAM AHOK,\nROTTERDAM",
     date: "FRIDAY, 26 \\\\ 09 \\\\ 2023",
     time: "8:00 PM",
-    type: "FULL PASS\nTICKET",
+    typeLines: ["FULL PASS", "TICKET"],
   },
   {
     id: 2,
@@ -18,27 +18,25 @@ const events = [
     location: "SPECIAL REGION OF\nYOGYAKARTA,\nINDONESIA",
     date: "THRUSDAY, 26 \\\\ 09 \\\\ 2023",
     time: "8:00 PM",
-    type: "FULL PASS\nTICKET",
+    typeLines: ["FULL PASS", "TICKET"],
   }
 ];
 
 const Barcode: React.FC = () => {
-  // Generate random bars for the barcode
-  const bars = Array.from({ length: 24 }).map((_, i) => ({
-    width: Math.floor(Math.random() * 3) + 1,
-    gap: Math.floor(Math.random() * 2) + 1,
-  }));
+  const barWidths = [2, 1, 3, 1, 2, 1, 1, 3, 2, 1, 2, 3, 1, 1, 2, 3, 1, 2, 1, 3, 1, 2];
+  const barGaps = [2, 3, 1, 2, 1, 3, 2, 1, 2, 1, 3, 1, 2, 3, 1, 2, 1, 2, 3, 1, 2, 1];
 
   return (
-    <div className="flex flex-row items-center justify-center h-20 px-3">
-      {bars.map((bar, i) => (
+    <div className="flex flex-row items-center justify-center px-4 h-full">
+      {barWidths.map((width, i) => (
         <div
           key={i}
           style={{
-            width: `${bar.width}px`,
-            marginRight: `${bar.gap}px`,
+            width: `${width}px`,
+            height: i % 2 === 0 ? '72px' : '52px',
+            marginRight: `${barGaps[i]}px`,
           }}
-          className="h-full bg-white"
+          className="bg-white flex-shrink-0"
         />
       ))}
     </div>
@@ -47,7 +45,7 @@ const Barcode: React.FC = () => {
 
 const ConcertScheduleSection: React.FC = () => {
   return (
-    <section className="relative w-full bg-[#000000] text-[#FFFFFF] font-sans px-8 py-12 flex flex-col">
+    <section className="relative w-full bg-[#000000] text-[#FFFFFF] font-sans px-8 py-12 flex flex-col overflow-hidden">
       {/* HEADER DE SECTION */}
       <div className="relative mb-10">
         <div className="flex flex-col">
@@ -76,13 +74,13 @@ const ConcertScheduleSection: React.FC = () => {
       </div>
 
       {/* LISTE TICKETS */}
-      <div className="flex flex-col">
+      <div className="flex flex-col relative w-full">
         {events.map((event, index) => (
-          <div key={event.id} className="relative">
+          <div key={event.id} className="w-full">
             {/* Ticket Card */}
-            <div className="grid grid-cols-[58%_8%_34%] border border-white/18 rounded-[2px] relative overflow-visible min-h-[160px]">
+            <div className="grid grid-cols-[62%_10%_28%] border border-white/18 rounded-[2px] relative min-h-[160px]">
               {/* COLONNE 1 — INFOS ÉVÉNEMENT */}
-              <div className="flex flex-col justify-between p-7 pr-6">
+              <div className="flex flex-col justify-between p-7 pr-7">
                 <div>
                   <h3 className="text-[15px] font-[600] tracking-[0.08em] uppercase text-white mb-3">
                     {event.name}
@@ -92,11 +90,11 @@ const ConcertScheduleSection: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="flex flex-row items-center gap-3 mt-auto pt-5">
+                <div className="flex flex-row items-center gap-[10px] mt-auto pt-5">
                   <span className="text-[10px] uppercase tracking-[0.12em] text-white/55">
                     {event.date}
                   </span>
-                  <span className="text-[#FF2200] text-[5px]">●</span>
+                  <span className="text-[#FF2200] text-[5px] leading-none">●</span>
                   <span className="text-[10px] uppercase tracking-[0.12em] text-white/55">
                     {event.time}
                   </span>
@@ -104,15 +102,15 @@ const ConcertScheduleSection: React.FC = () => {
               </div>
 
               {/* COLONNE 2 — BARCODE */}
-              <div className="relative flex items-center justify-center border-l border-dashed border-white/20">
+              <div className="relative flex items-center justify-center border-l border-r border-dashed border-white/25">
                 <Barcode />
               </div>
 
               {/* COLONNE 3 — TICKET TYPE + CTA */}
-              <div className="flex flex-col justify-between items-end p-7 border-l border-white/12">
+              <div className="flex flex-col justify-between items-end p-7">
                 <div className="text-right">
-                  {event.type.split('\n').map((line, i) => (
-                    <p key={i} className="text-[11px] uppercase tracking-[0.15em] text-white/70">
+                  {event.typeLines.map((line, i) => (
+                    <p key={i} className="text-[10px] uppercase tracking-[0.18em] text-white/70 leading-tight">
                       {line}
                     </p>
                   ))}
@@ -121,20 +119,21 @@ const ConcertScheduleSection: React.FC = () => {
                 <motion.button
                   whileHover={{ backgroundColor: '#FFFFFF', color: '#000000' }}
                   transition={{ duration: 0.2 }}
-                  className="border border-white/80 rounded-full px-4 py-[7px] text-[10px] uppercase tracking-[0.1em] text-white bg-transparent whitespace-nowrap mt-auto"
+                  className="border border-white/80 rounded-full px-4 py-[7px] text-[10px] uppercase tracking-[0.1em] text-white bg-transparent whitespace-nowrap mt-auto self-end"
                 >
                   BUY NOW →
                 </motion.button>
               </div>
 
-              {/* Cercles de découpe (uniquement au milieu des tickets ou en haut/bas de la zone barcode) */}
-              {/* On place les cercles sur la ligne de séparation droite du barcode (border-left de col 3) */}
-              <div className="absolute top-0 right-[34%] -translate-y-1/2 translate-x-1/2 w-4 h-4 bg-black border border-white/18 rounded-full z-10" />
-              <div className="absolute bottom-0 right-[34%] translate-y-1/2 translate-x-1/2 w-4 h-4 bg-black border border-white/18 rounded-full z-10" />
+              {/* Cercle de découpe entre les 2 cards */}
+              {/* Positionné au bas de la première card / haut de la deuxième */}
+              {index === 0 && (
+                <div 
+                  style={{ left: 'calc(62% + 10%)', transform: 'translate(-50%, 50%)' }}
+                  className="absolute bottom-0 w-5 h-5 bg-black border border-white/20 rounded-full z-20" 
+                />
+              )}
             </div>
-            
-            {/* Margin between tickets is 0 as per prompt, they touch */}
-            {index !== events.length - 1 && <div className="h-0" />}
           </div>
         ))}
       </div>
