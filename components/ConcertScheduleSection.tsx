@@ -74,10 +74,13 @@ const ConcertScheduleSection: React.FC = () => {
         {events.map((event, index) => (
           <div 
             key={event.id} 
-            className="flex relative overflow-hidden bg-[#0A0A0A] border border-white/30 min-h-[160px] rounded-[2px]"
+            className="flex relative overflow-hidden bg-[#0A0A0A] min-h-[160px] rounded-[2px]"
           >
+            {/* BORDURE DU TICKET (Positionnée de manière à être "mangée" par les encoches) */}
+            <div className="absolute inset-0 border border-white/30 rounded-[2px] z-10 pointer-events-none" />
+
             {/* GAUCHE — INFOS + BARCODE */}
-            <div className="flex flex-grow items-stretch">
+            <div className="flex flex-grow items-stretch relative z-20">
               {/* INFOS ÉVÉNEMENT */}
               <div className="flex flex-col justify-between p-7 flex-grow">
                 <div>
@@ -107,23 +110,23 @@ const ConcertScheduleSection: React.FC = () => {
             </div>
 
             {/* DIVIDER — La ligne de séparation avec les encoches */}
-            <div className="relative w-px self-stretch flex flex-col justify-between items-center flex-shrink-0">
+            <div className="relative w-px self-stretch flex flex-col justify-between items-center flex-shrink-0 z-30">
               {/* Ligne en pointillés */}
               <div className="absolute inset-y-0 left-0 border-l border-dashed border-white/40" />
               
-              {/* Encoche Haut */}
+              {/* Encoche Haut (Cercle plein noir qui recouvre la bordure du ticket) */}
               <div 
                 className="w-[28px] h-[28px] rounded-full bg-black border border-white/30 z-50 -mt-3.5 -ml-[0.5px] flex-shrink-0"
               />
               
-              {/* Encoche Bas */}
+              {/* Encoche Bas (Cercle plein noir qui recouvre la bordure du ticket) */}
               <div 
                 className="w-[28px] h-[28px] rounded-full bg-black border border-white/30 z-50 -mb-3.5 -ml-[0.5px] flex-shrink-0"
               />
             </div>
 
             {/* DROITE — TICKET TYPE + CTA */}
-            <div className="flex flex-col justify-between items-end p-7 w-[28%] shrink-0">
+            <div className="flex flex-col justify-between items-end p-7 w-[28%] shrink-0 relative z-20">
               <div className="text-right">
                 {event.typeLines.map((line, i) => (
                   <p key={i} className="text-[10px] uppercase tracking-[0.18em] text-white/70 leading-tight">
