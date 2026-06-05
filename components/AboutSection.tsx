@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Instagram } from 'lucide-react';
 
 /**
  * AboutSection Component
@@ -49,13 +50,20 @@ const AboutSection: React.FC = () => {
               ORIGINAIRE DE BOBO-DIOULASSO
             </p>
 
-            <motion.button 
-              whileHover={{ scale: 1.05, backgroundColor: 'white', color: 'black' }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 py-2 border border-white/40 rounded-full text-[10px] font-normal tracking-[0.1em] uppercase text-white transition-colors duration-200"
+            <a 
+              href="https://www.instagram.com/vd__officiel/?utm_source=ig_web_button_share_sheet" 
+              target="_blank" 
+              rel="noopener noreferrer"
             >
-              READ MORE →
-            </motion.button>
+              <motion.button 
+                whileHover={{ scale: 1.05, backgroundColor: 'white', color: 'black' }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-2 px-6 py-2 border border-white/40 rounded-full text-[10px] font-normal tracking-[0.1em] uppercase text-white transition-colors duration-200"
+              >
+                <Instagram size={14} />
+                INSTAGRAM →
+              </motion.button>
+            </a>
           </div>
 
           {/* COLUMN 2: CENTER IMAGE & OVERLAPPING TEXT */}
@@ -117,8 +125,8 @@ const AboutSection: React.FC = () => {
         <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mt-12">
           {/* Static Labels */}
           <div className="flex justify-center gap-12 mb-4 text-[10px] font-bold tracking-[0.3em] text-white/30 uppercase">
-            <span>NEW RELEASED</span>
-            <span>ALBUM</span>
+            <span>DERNIER ALBUM</span>
+            <span>SORTIE EN</span>
             <span>2025</span>
           </div>
 
@@ -127,18 +135,18 @@ const AboutSection: React.FC = () => {
             <motion.div 
               className="inline-block"
               animate={{ x: ["0%", "-50%"] }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
             >
               {[1, 2].map((i) => (
                 <span 
                   key={i} 
-                  className="text-[120px] font-[950] tracking-[-0.02em] uppercase px-8" 
+                  className="text-[100px] font-[950] tracking-[-0.02em] uppercase px-8" 
                   style={{ 
                     color: 'transparent',
                     WebkitTextStroke: '1px rgba(255,255,255,0.15)'
                   }}
                 >
-                  STREAM VD ON ALL PLATFORMS NOW • STREAM VD ON ALL PLATFORMS NOW •
+                  ÉCOUTEZ VD SUR TOUTES LES PLATEFORMES MAINTENANT • ÉCOUTEZ VD SUR TOUTES LES PLATEFORMES MAINTENANT •
                 </span>
               ))}
             </motion.div>
