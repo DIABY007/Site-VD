@@ -29,11 +29,11 @@ const products: Product[] = [
 /**
  * ShopSection Component
  * Reproduces the merchandise shop section.
- * Standardized with max-width 1000px for layout continuity.
+ * Occupies 100vh for vertical full-screen feel.
  */
 const ShopSection: React.FC = () => {
   return (
-    <section className="relative w-full bg-[#000000] text-[#FFFFFF] font-sans px-8 py-20 flex flex-col items-center overflow-hidden">
+    <section className="relative w-full h-screen bg-[#000000] text-[#FFFFFF] font-sans px-8 flex flex-col items-center justify-center overflow-hidden">
       {/* Standardized 1000px Centered Container */}
       <div className="w-full max-w-[1000px] flex flex-col">
         
@@ -136,16 +136,6 @@ const ShopSection: React.FC = () => {
           ))}
         </div>
       </div>
-
-      <style jsx global>{`
-        @import url('https://fonts.cdnfonts.com/css/helvetica-neue-9');
-        
-        body {
-          font-family: 'Helvetica Neue', sans-serif;
-          margin: 0;
-          background-color: #000;
-        }
-      `}</style>
     </section>
   );
 };

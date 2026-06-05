@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 /**
  * AboutSection Component
  * Reproduces the "WHO IS THE DESTROY LONELY?" section.
- * Standardized with max-width 1000px for layout continuity.
+ * Occupies 100vh for vertical full-screen feel.
  */
 const AboutSection: React.FC = () => {
   const colors = {
@@ -21,29 +21,19 @@ const AboutSection: React.FC = () => {
     plusColor: 'rgba(255,255,255,0.25)',
   };
 
-  const fonts = {
-    primary: "'Helvetica Neue', sans-serif",
-  };
-
   return (
-    <section 
-      className="relative w-full bg-black overflow-hidden flex flex-col items-center"
-      style={{ fontFamily: fonts.primary }}
-    >
+    <section className="relative w-full h-screen bg-black overflow-hidden flex flex-col items-center justify-center">
       {/* Top Separator Line */}
-      <div className="w-full h-[1px]" style={{ backgroundColor: colors.borderSeparator }} />
+      <div className="absolute top-0 w-full h-[1px]" style={{ backgroundColor: colors.borderSeparator }} />
 
-      {/* Decorative Crosses at corners (Relative to the centered container) */}
-      <div className="w-full max-w-[1000px] relative">
-        <div className="absolute top-[24px] left-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
-        <div className="absolute top-[24px] right-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
-        <div className="absolute bottom-[-64px] left-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
-        <div className="absolute bottom-[-64px] right-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
-      </div>
+      {/* Standardized 1000px Centered Container */}
+      <div className="w-full max-w-[1000px] relative px-8 flex flex-col">
+        {/* Decorative Crosses */}
+        <div className="absolute top-0 left-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
+        <div className="absolute top-0 right-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
 
-      <div className="w-full max-w-[1000px] px-8 py-[48px]">
         {/* Main Layout Grid */}
-        <div className="grid grid-cols-[30%_25%_45%] gap-[32px] items-center mb-[64px]">
+        <div className="grid grid-cols-[30%_25%_45%] gap-[32px] items-center mb-[48px] mt-12">
           
           {/* Column 1: Display Title + CTA */}
           <div className="flex flex-col items-start">
@@ -60,13 +50,11 @@ const AboutSection: React.FC = () => {
                </div>
             </div>
 
-            {/* Subtitle */}
             <div className="mt-[16px] flex flex-col text-[9px] font-normal tracking-[0.15em] uppercase" style={{ color: colors.textMetadata }}>
               <span>BOBBY WARDEL</span>
               <span>SANDIMANIE III</span>
             </div>
 
-            {/* CTA */}
             <button 
               className="mt-[32px] px-[16px] py-[7px] border rounded-full text-[10px] font-normal tracking-[0.1em] uppercase text-white transition-all duration-200 hover:bg-white hover:text-black"
               style={{ borderColor: 'rgba(255,255,255,0.85)' }}
@@ -82,7 +70,6 @@ const AboutSection: React.FC = () => {
               alt="Destroy Lonely Artist"
               className="w-full h-full object-cover object-top grayscale"
             />
-            {/* Metadata on photo */}
             <div className="absolute bottom-[10px] left-[12px] text-[8px] font-normal tracking-[0.1em] uppercase text-black/55">
               25 \\ 05 \\ 2023
             </div>
@@ -95,11 +82,7 @@ const AboutSection: React.FC = () => {
               DELIVERS ERRATIC, SPEEDY RHYMES OVER<br />
               ATMOSPHERIC TRAP BEATS.
             </p>
-            
-            <div className="my-[20px] text-[14px] font-normal" style={{ color: 'rgba(255,255,255,0.3)' }}>
-              \\
-            </div>
-
+            <div className="my-[16px] text-[14px] font-normal" style={{ color: 'rgba(255,255,255,0.3)' }}>\\</div>
             <p className="text-[11px] font-normal tracking-[0.06em] leading-[1.8] uppercase text-center" style={{ color: colors.textBio2 }}>
               HE'S RELEASED NUMEROUS MIXTAPES AND EPS<br />
               SINCE THE LATE 2010S, AND HIS 2019 SINGLE<br />
@@ -114,8 +97,7 @@ const AboutSection: React.FC = () => {
         </div>
 
         {/* Ticker Section */}
-        <div className="w-full">
-          {/* Ticker Metadata Bar */}
+        <div className="w-full relative">
           <div className="flex justify-between items-center mb-[12px] text-[9px] font-normal tracking-[0.2em] uppercase" style={{ color: 'rgba(255,255,255,0.3)' }}>
             <span>EASED</span>
             <span>ALBUM</span>
@@ -125,9 +107,7 @@ const AboutSection: React.FC = () => {
             <span>2023</span>
             <span>NEW RELEASED</span>
           </div>
-
-          {/* Scrolling Ticker */}
-          <div className="relative overflow-hidden whitespace-nowrap py-2">
+          <div className="relative overflow-hidden whitespace-nowrap py-2 border-y border-white/5">
             <motion.div 
               className="inline-block"
               animate={{ x: ["0%", "-33.33%"] }}
@@ -141,6 +121,10 @@ const AboutSection: React.FC = () => {
             </motion.div>
           </div>
         </div>
+
+        {/* Decorative Bottom Crosses */}
+        <div className="absolute bottom-[-40px] left-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
+        <div className="absolute bottom-[-40px] right-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
       </div>
     </section>
   );

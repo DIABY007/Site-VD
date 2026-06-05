@@ -39,11 +39,16 @@ const Barcode: React.FC = () => {
   );
 };
 
+/**
+ * ConcertScheduleSection Component
+ * Reproduces the concert tour list.
+ * Occupies 100vh for vertical full-screen feel.
+ */
 const ConcertScheduleSection: React.FC = () => {
   return (
-    <section className="relative w-full bg-[#000000] text-[#FFFFFF] font-sans px-8 py-12 flex flex-col overflow-hidden">
-      {/* CONTENEUR GLOBAL LIMITÉ */}
-      <div className="w-full max-w-[1000px] mx-auto flex flex-col">
+    <section className="relative w-full h-screen bg-[#000000] text-[#FFFFFF] font-sans px-8 flex flex-col items-center justify-center overflow-hidden">
+      {/* Standardized 1000px Centered Container */}
+      <div className="w-full max-w-[1000px] flex flex-col">
         
         {/* HEADER DE SECTION */}
         <div className="relative mb-12 flex justify-between items-end">
@@ -61,7 +66,6 @@ const ConcertScheduleSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Année (top-right aligné avec le header) */}
           <div className="flex flex-col items-end leading-[0.85]">
             <span className="text-[3.5rem] font-[800] tracking-[-0.02em] text-white/50">
               2023
@@ -79,12 +83,9 @@ const ConcertScheduleSection: React.FC = () => {
               key={event.id} 
               className="flex relative overflow-hidden bg-[#0A0A0A] min-h-[160px] rounded-[2px]"
             >
-              {/* BORDURE DU TICKET (Positionnée de manière à être "mangée" par les encoches) */}
               <div className="absolute inset-0 border border-white/30 rounded-[2px] z-10 pointer-events-none" />
 
-              {/* GAUCHE — INFOS + BARCODE (70% Largeur) */}
               <div className="flex w-[70%] items-stretch relative z-20 px-10 py-8">
-                {/* INFOS ÉVÉNEMENT */}
                 <div className="flex flex-col flex-grow uppercase">
                   <div>
                     <h3 className="text-[1.25rem] font-[600] tracking-[0.05em] text-white mb-3">
@@ -106,29 +107,17 @@ const ConcertScheduleSection: React.FC = () => {
                   </div>
                 </div>
 
-                {/* BARCODE */}
                 <div className="flex items-center justify-center pl-6">
                   <Barcode />
                 </div>
               </div>
 
-              {/* DIVIDER — La ligne de séparation avec les encoches */}
               <div className="relative w-px self-stretch flex flex-col justify-between items-center flex-shrink-0 z-30">
-                {/* Ligne en pointillés */}
                 <div className="absolute inset-y-0 left-0 border-l border-dashed border-white/40" />
-                
-                {/* Encoche Haut (Cercle plein noir qui recouvre la bordure du ticket) */}
-                <div 
-                  className="w-[28px] h-[28px] rounded-full bg-black border border-white/30 z-50 -mt-3.5 -ml-[0.5px] flex-shrink-0"
-                />
-                
-                {/* Encoche Bas (Cercle plein noir qui recouvre la bordure du ticket) */}
-                <div 
-                  className="w-[28px] h-[28px] rounded-full bg-black border border-white/30 z-50 -mb-3.5 -ml-[0.5px] flex-shrink-0"
-                />
+                <div className="w-[28px] h-[28px] rounded-full bg-black border border-white/30 z-50 -mt-3.5 -ml-[0.5px] flex-shrink-0" />
+                <div className="w-[28px] h-[28px] rounded-full bg-black border border-white/30 z-50 -mb-3.5 -ml-[0.5px] flex-shrink-0" />
               </div>
 
-              {/* DROITE — TICKET TYPE + CTA (30% Largeur) */}
               <div className="flex w-[30%] flex-col justify-center items-center px-10 py-8 relative z-20 gap-6">
                 <div className="text-center uppercase">
                   {event.typeLines.map((line, i) => (
@@ -150,16 +139,6 @@ const ConcertScheduleSection: React.FC = () => {
           ))}
         </div>
       </div>
-
-      <style jsx global>{`
-        @import url('https://fonts.cdnfonts.com/css/helvetica-neue-9');
-        
-        body {
-          font-family: 'Helvetica Neue', sans-serif;
-          margin: 0;
-          background-color: #000;
-        }
-      `}</style>
     </section>
   );
 };

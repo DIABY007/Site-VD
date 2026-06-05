@@ -4,49 +4,35 @@ import Image from 'next/image';
 /**
  * HeroSection Component
  * Reproduces the Destroy Lonely "IF LOOKS COULD KILL" hero section.
- * Adheres strictly to design.json and visual specifications.
- * Updated to match the global 1000px centered layout continuity.
+ * Occupies exactly 100vh for immersive feel.
  */
 const HeroSection: React.FC = () => {
-  // Design Tokens (based on design.json)
   const colors = {
-    pageFrame: '#000000', // Changed to match global black
     cardBackground: '#000000',
-    textPrimary: '#FFFFFF',
+    accentRed: '#FF2200',
     textSecondary: 'rgba(255,255,255,0.55)',
     textMetadata: 'rgba(255,255,255,0.45)',
-    accentRed: '#FF2200',
     borderTag: 'rgba(255,255,255,0.60)',
     borderCTA: 'rgba(255,255,255,0.85)',
   };
 
-  const fonts = {
-    primary: "'Helvetica Neue', sans-serif",
-  };
-
   return (
-    <div 
-      className="flex flex-col items-center justify-center min-h-screen bg-black"
-      style={{ fontFamily: fonts.primary }}
-    >
+    <section className="relative w-full h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
       {/* Standardized 1000px Centered Container */}
       <div className="w-full max-w-[1000px] px-8 sm:px-4">
         {/* Card Container */}
         <div 
           className="relative w-full aspect-[16/10] bg-black rounded-[4px] overflow-hidden border border-white/10"
-          style={{ backgroundColor: colors.cardBackground }}
         >
           
           {/* Navigation */}
           <nav className="absolute top-0 left-0 w-full h-[56px] flex justify-between items-center px-[32px] z-20">
-            {/* Left: ABOUT • MUSIC */}
             <div className="flex items-center gap-[16px] text-[11px] font-normal tracking-[0.12em] text-white uppercase">
               <span>ABOUT</span>
               <span style={{ color: colors.accentRed }}>•</span>
               <span>MUSIC</span>
             </div>
 
-            {/* Center: DESTROY / LONELY */}
             <div className="text-center leading-tight">
               <h1 className="text-[13px] font-normal tracking-[0.25em] text-white uppercase flex flex-col items-center">
                 <span>DESTROY</span>
@@ -54,7 +40,6 @@ const HeroSection: React.FC = () => {
               </h1>
             </div>
 
-            {/* Right: SHOP • TOUR */}
             <div className="flex items-center gap-[16px] text-[11px] font-normal tracking-[0.12em] text-white uppercase">
               <span>SHOP</span>
               <span style={{ color: colors.accentRed }}>•</span>
@@ -73,12 +58,8 @@ const HeroSection: React.FC = () => {
 
           {/* Bottom Section */}
           <div className="absolute bottom-[28px] left-[32px] right-[32px] flex justify-between items-end z-20">
-            
-            {/* Bottom Left: Cluster + Date */}
             <div className="flex flex-col items-start gap-[24px]">
-              {/* Cluster (Tag + CTA) */}
               <div className="flex flex-col items-start gap-[8px]">
-                {/* Tag Pill */}
                 <div 
                   className="flex items-center gap-[4px] px-[12px] py-[5px] rounded-full border text-[10px] font-normal tracking-[0.08em] text-white uppercase"
                   style={{ borderColor: colors.borderTag }}
@@ -87,7 +68,6 @@ const HeroSection: React.FC = () => {
                   IFLOOKSCOULDKILL
                 </div>
 
-                {/* CTA Pill */}
                 <button 
                   className="group flex items-center gap-[4px] px-[14px] py-[6px] rounded-full border text-[11px] font-normal tracking-[0.1em] text-white uppercase transition-all duration-200 ease-in-out hover:bg-white hover:text-black"
                   style={{ borderColor: colors.borderCTA }}
@@ -96,7 +76,6 @@ const HeroSection: React.FC = () => {
                 </button>
               </div>
 
-              {/* Date Metadata */}
               <div 
                 className="text-[10px] font-normal tracking-[0.15em] uppercase"
                 style={{ color: colors.textMetadata }}
@@ -105,9 +84,7 @@ const HeroSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Bottom Right: Descriptor + Year */}
             <div className="flex flex-col items-center gap-[24px] max-w-[220px]">
-              {/* Descriptor Text */}
               <p 
                 className="text-[10.5px] font-normal tracking-[0.06em] leading-[1.7] uppercase text-center"
                 style={{ color: colors.textSecondary }}
@@ -118,7 +95,6 @@ const HeroSection: React.FC = () => {
                 SURREALISTIC MELODIES
               </p>
 
-              {/* Year Metadata */}
               <div className="w-full flex justify-end">
                 <span 
                   className="text-[10px] font-normal tracking-[0.15em] uppercase"
@@ -132,7 +108,7 @@ const HeroSection: React.FC = () => {
 
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
