@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
  * HeroSection Component
  * Reproduces the Destroy Lonely "IF LOOKS COULD KILL" hero section.
  * Optimized for natural flow with Framer Motion entrance animations.
+ * Borders on sides removed as requested.
  */
 const HeroSection: React.FC = () => {
   const colors = {
@@ -27,9 +28,9 @@ const HeroSection: React.FC = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="w-full max-w-[1400px] px-8 sm:px-4"
       >
-        {/* Card Container */}
+        {/* Card Container - Vertical borders removed (border-x) */}
         <div 
-          className="relative w-full aspect-[16/10] bg-black overflow-hidden border-x border-b border-white/10 rounded-[4px]"
+          className="relative w-full aspect-[16/10] bg-black overflow-hidden border-b border-white/10 rounded-[4px]"
         >
           
           {/* Navigation */}

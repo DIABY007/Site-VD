@@ -30,6 +30,7 @@ const products: Product[] = [
  * ShopSection Component
  * Reproduces the merchandise shop section.
  * Optimized for natural flow with scroll animations.
+ * Product image enlarged and centered.
  */
 const ShopSection: React.FC = () => {
   return (
@@ -68,20 +69,22 @@ const ShopSection: React.FC = () => {
           {products.map((product, index) => (
             <div 
               key={product.id}
-              className={`grid grid-cols-[28%_12%_30%_30%] gap-0 py-12 ${
+              className={`grid grid-cols-[20%_15%_45%_20%] gap-0 py-12 ${
                 index !== products.length - 1 ? 'border-b border-white/10' : ''
-              } items-stretch`}
+              } items-center`}
             >
               {/* COLONNE 1 — NOM + PRIX + SHIPS */}
-              <div className="flex flex-col h-full uppercase">
-                <h3 className="text-[14px] font-[600] tracking-[0.08em] mb-[10px] text-white">
-                  {product.name}
-                </h3>
-                <span className="text-[14px] font-[700] tracking-[0.05em] mb-auto text-white">
-                  {product.price}
-                </span>
+              <div className="flex flex-col h-full uppercase justify-between">
+                <div>
+                  <h3 className="text-[16px] font-[600] tracking-[0.08em] mb-[10px] text-white">
+                    {product.name}
+                  </h3>
+                  <span className="text-[16px] font-[700] tracking-[0.05em] text-white">
+                    {product.price}
+                  </span>
+                </div>
                 
-                <div className="mt-auto">
+                <div className="mt-8">
                   <p className="text-white/35 text-[9px] uppercase tracking-[0.15em] leading-none">
                     SHIPS ON
                   </p>
@@ -92,10 +95,10 @@ const ShopSection: React.FC = () => {
               </div>
 
               {/* COLONNE 2 — TAGS + BUY NOW */}
-              <div className="flex flex-col items-end h-full">
-                <div className="text-right mb-auto uppercase">
+              <div className="flex flex-col items-start h-full justify-between px-4">
+                <div className="text-left uppercase">
                   {product.tags.map((tag, i) => (
-                    <p key={i} className="text-white/40 text-[9px] uppercase tracking-[0.1em] leading-[1.9]">
+                    <p key={i} className="text-white/40 text-[10px] uppercase tracking-[0.1em] leading-[1.9]">
                       {tag}
                     </p>
                   ))}
@@ -104,33 +107,33 @@ const ShopSection: React.FC = () => {
                 <motion.button
                   whileHover={{ scale: 1.05, backgroundColor: 'white', color: 'black' }}
                   whileTap={{ scale: 0.95 }}
-                  className="border border-white/75 rounded-full px-[18px] py-[8px] text-[9px] uppercase tracking-[0.12em] text-white bg-transparent whitespace-nowrap transition-colors duration-200"
+                  className="border border-white/75 rounded-full px-[24px] py-[10px] text-[10px] uppercase tracking-[0.12em] text-white bg-transparent whitespace-nowrap transition-colors duration-200 mt-8"
                 >
                   BUY NOW →
                 </motion.button>
               </div>
 
-              {/* COLONNE 3 — IMAGE PRODUIT */}
-              <div className="px-8">
+              {/* COLONNE 3 — IMAGE PRODUIT (Centrée et agrandie) */}
+              <div className="px-12 flex justify-center items-center">
                 <motion.div 
-                  whileHover={{ scale: 1.02 }}
-                  className="w-full h-[240px] bg-[#0A0A0A] relative overflow-hidden flex items-center justify-center border border-white/10 rounded-[2px]"
+                  whileHover={{ scale: 1.05 }}
+                  className="w-full max-w-[480px] aspect-square bg-[#0A0A0A] relative overflow-hidden flex items-center justify-center border border-white/10 rounded-[4px]"
                 >
                   <Image
                     src={product.image}
                     alt={product.name}
-                    width={240}
-                    height={240}
-                    className="object-contain w-full h-full p-4"
+                    width={480}
+                    height={480}
+                    className="object-contain w-full h-full p-8"
                   />
                 </motion.div>
               </div>
 
-              {/* COLONNE 4 — ESPACE NÉGATIF / DESCRIPTION */}
-              <div className="pl-6 flex flex-col justify-start uppercase">
+              {/* COLONNE 4 — DESCRIPTION */}
+              <div className="pl-8 flex flex-col justify-center uppercase">
                 {product.description && (
                   <>
-                    <p className="text-white/50 text-[11px] tracking-[0.05em] leading-[1.8] max-w-[280px]">
+                    <p className="text-white/50 text-[11px] tracking-[0.05em] leading-[1.8]">
                       {product.description}
                     </p>
                     {product.note && (
@@ -139,6 +142,13 @@ const ShopSection: React.FC = () => {
                       </p>
                     )}
                   </>
+                )}
+                {!product.description && (
+                  <p className="text-white/30 text-[10px] tracking-[0.2em] leading-relaxed">
+                    LIMITED EDITION<br />
+                    COLLECTORS ITEM<br />
+                    \\\ 2023
+                  </p>
                 )}
               </div>
             </div>

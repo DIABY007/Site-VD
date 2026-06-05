@@ -22,10 +22,14 @@ const events = [
   }
 ];
 
+/**
+ * Barcode Component
+ * Updated to occupy full height of its container and align with the divider line.
+ */
 const Barcode: React.FC = () => {
   return (
     <div 
-      className="w-[20px] h-[72px]"
+      className="w-[20px] h-full"
       style={{
         background: `repeating-linear-gradient(
           to bottom,
@@ -43,6 +47,7 @@ const Barcode: React.FC = () => {
  * ConcertScheduleSection Component
  * Reproduces the concert tour list.
  * Optimized for natural flow with scroll animations.
+ * Barcode height matched with the divider/notch height.
  */
 const ConcertScheduleSection: React.FC = () => {
   return (
@@ -91,47 +96,51 @@ const ConcertScheduleSection: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="flex relative overflow-hidden bg-[#0A0A0A] min-h-[160px] rounded-[2px]"
+              className="flex relative overflow-hidden bg-[#0A0A0A] min-h-[180px] rounded-[2px]"
             >
               <div className="absolute inset-0 border border-white/30 rounded-[2px] z-10 pointer-events-none" />
 
-              <div className="flex w-[70%] items-stretch relative z-20 px-10 py-8">
+              {/* GAUCHE (70% Largeur) */}
+              <div className="flex w-[70%] items-stretch relative z-20 px-12 py-10">
                 <div className="flex flex-col flex-grow uppercase">
                   <div>
-                    <h3 className="text-[1.25rem] font-[600] tracking-[0.05em] text-white mb-3">
+                    <h3 className="text-[1.5rem] font-[600] tracking-[0.05em] text-white mb-3">
                       {event.name}
                     </h3>
-                    <p className="text-[0.85rem] tracking-[0.05em] leading-[1.4] text-[#a0a0a0] whitespace-pre-line">
+                    <p className="text-[0.95rem] tracking-[0.05em] leading-[1.4] text-[#a0a0a0] whitespace-pre-line">
                       {event.location}
                     </p>
                   </div>
 
-                  <div className="flex flex-row items-center gap-[10px] mt-auto">
-                    <span className="text-[0.85rem] tracking-[0.05em] text-[#a0a0a0]">
+                  <div className="flex flex-row items-center gap-[12px] mt-auto">
+                    <span className="text-[0.95rem] tracking-[0.05em] text-[#a0a0a0]">
                       {event.date}
                     </span>
                     <span className="text-[#ff3333] text-[6px] leading-none">●</span>
-                    <span className="text-[0.85rem] tracking-[0.05em] text-[#a0a0a0]">
+                    <span className="text-[0.95rem] tracking-[0.05em] text-[#a0a0a0]">
                       {event.time}
                     </span>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-center pl-6">
+                {/* BARCODE - h-full used to match the divider line height */}
+                <div className="flex items-center justify-center pl-10 h-full py-2">
                   <Barcode />
                 </div>
               </div>
 
+              {/* DIVIDER & NOTCHES */}
               <div className="relative w-px self-stretch flex flex-col justify-between items-center flex-shrink-0 z-30">
                 <div className="absolute inset-y-0 left-0 border-l border-dashed border-white/40" />
                 <div className="w-[28px] h-[28px] rounded-full bg-black border border-white/30 z-50 -mt-3.5 -ml-[0.5px] flex-shrink-0" />
                 <div className="w-[28px] h-[28px] rounded-full bg-black border border-white/30 z-50 -mb-3.5 -ml-[0.5px] flex-shrink-0" />
               </div>
 
-              <div className="flex w-[30%] flex-col justify-center items-center px-10 py-8 relative z-20 gap-6">
+              {/* DROITE (30% Largeur) */}
+              <div className="flex w-[30%] flex-col justify-center items-center px-12 py-10 relative z-20 gap-8">
                 <div className="text-center uppercase">
                   {event.typeLines.map((line, i) => (
-                    <p key={i} className="text-[0.75rem] tracking-[0.05em] text-[#a0a0a0] leading-tight">
+                    <p key={i} className="text-[0.85rem] tracking-[0.05em] text-[#a0a0a0] leading-tight">
                       {line}
                     </p>
                   ))}
@@ -140,7 +149,7 @@ const ConcertScheduleSection: React.FC = () => {
                 <motion.button
                   whileHover={{ scale: 1.05, backgroundColor: 'white', color: 'black' }}
                   whileTap={{ scale: 0.95 }}
-                  className="border border-white/40 rounded-full px-6 py-2 text-[0.75rem] uppercase tracking-[0.1em] text-white bg-transparent whitespace-nowrap transition-colors duration-200"
+                  className="border border-white/40 rounded-full px-8 py-3 text-[0.85rem] uppercase tracking-[0.1em] text-white bg-transparent whitespace-nowrap transition-colors duration-200"
                 >
                   BUY NOW →
                 </motion.button>
