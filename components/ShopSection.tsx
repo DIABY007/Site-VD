@@ -18,7 +18,7 @@ interface Product {
 const products: Product[] = [
   {
     id: 1,
-    name: "MASQUE KILLA",
+    name: "T-SHIRT DFG",
     price: "5000 FCFA",
     shipsOn: "4 JOURS",
     tags: ["ARTICLES,", "OFFICIEL", "STICKER,", "BOX"],
