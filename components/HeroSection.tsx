@@ -4,7 +4,7 @@ import Image from 'next/image';
 /**
  * HeroSection Component
  * Reproduces the Destroy Lonely "IF LOOKS COULD KILL" hero section.
- * Occupies exactly 100vh for immersive feel.
+ * Occupies exactly 100vh and sticks to the top without gaps.
  */
 const HeroSection: React.FC = () => {
   const colors = {
@@ -17,16 +17,17 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="relative w-full h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
-      {/* Standardized 1000px Centered Container */}
-      <div className="w-full max-w-[1000px] px-8 sm:px-4">
-        {/* Card Container */}
+    <section className="relative w-full h-screen flex flex-col items-center bg-black overflow-hidden">
+      {/* Standardized 1000px Centered Container that takes full height */}
+      <div className="w-full max-w-[1000px] h-full px-8 sm:px-4">
+        {/* Card Container - now h-full to occupy entire height and border only on sides if needed, 
+            but here we keep it as a full box that sticks to top/bottom */}
         <div 
-          className="relative w-full aspect-[16/10] bg-black rounded-[4px] overflow-hidden border border-white/10"
+          className="relative w-full h-full bg-black overflow-hidden border-x border-b border-white/10"
         >
           
           {/* Navigation */}
-          <nav className="absolute top-0 left-0 w-full h-[56px] flex justify-between items-center px-[32px] z-20">
+          <nav className="absolute top-0 left-0 w-full h-[80px] flex justify-between items-center px-[32px] z-20">
             <div className="flex items-center gap-[16px] text-[11px] font-normal tracking-[0.12em] text-white uppercase">
               <span>ABOUT</span>
               <span style={{ color: colors.accentRed }}>•</span>
@@ -57,7 +58,7 @@ const HeroSection: React.FC = () => {
           </div>
 
           {/* Bottom Section */}
-          <div className="absolute bottom-[28px] left-[32px] right-[32px] flex justify-between items-end z-20">
+          <div className="absolute bottom-[40px] left-[32px] right-[32px] flex justify-between items-end z-20">
             <div className="flex flex-col items-start gap-[24px]">
               <div className="flex flex-col items-start gap-[8px]">
                 <div 

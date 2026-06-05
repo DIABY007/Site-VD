@@ -27,10 +27,10 @@ const AboutSection: React.FC = () => {
       <div className="absolute top-0 w-full h-[1px]" style={{ backgroundColor: colors.borderSeparator }} />
 
       {/* Standardized 1000px Centered Container */}
-      <div className="w-full max-w-[1000px] relative px-8 flex flex-col">
+      <div className="w-full max-w-[1000px] h-full relative px-8 flex flex-col justify-center border-x border-white/5">
         {/* Decorative Crosses */}
-        <div className="absolute top-0 left-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
-        <div className="absolute top-0 right-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
+        <div className="absolute top-[24px] left-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
+        <div className="absolute top-[24px] right-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
 
         {/* Main Layout Grid */}
         <div className="grid grid-cols-[30%_25%_45%] gap-[32px] items-center mb-[48px] mt-12">
@@ -123,8 +123,8 @@ const AboutSection: React.FC = () => {
         </div>
 
         {/* Decorative Bottom Crosses */}
-        <div className="absolute bottom-[-40px] left-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
-        <div className="absolute bottom-[-40px] right-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
+        <div className="absolute bottom-[24px] left-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
+        <div className="absolute bottom-[24px] right-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
       </div>
     </section>
   );
