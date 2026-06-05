@@ -150,9 +150,10 @@ const ConcertScheduleSection: React.FC = () => {
 
         .divider {
           position: relative;
-          width: 0;
-          border-right: 1px dashed rgba(255, 255, 255, 0.4);
+          width: 1px;
+          border-left: 1px dashed rgba(255, 255, 255, 0.4);
           height: 100%;
+          align-self: stretch;
         }
 
         /* Les encoches (L'illusion d'optique par débordement) */
@@ -165,7 +166,7 @@ const ConcertScheduleSection: React.FC = () => {
           border-radius: 50%;
           background-color: #000;
           border: 1px solid rgba(255, 255, 255, 0.3);
-          left: 1px; /* Alignement sur la bordure dashed */
+          left: -1px; /* Centré sur la bordure gauche dashed */
           transform: translateX(-50%);
           z-index: 10;
         }
