@@ -74,7 +74,7 @@ const ConcertScheduleSection: React.FC = () => {
         {events.map((event, index) => (
           <div 
             key={event.id} 
-            className="flex relative overflow-hidden bg-black/40 border border-white/30 min-h-[160px] rounded-[2px]"
+            className="flex relative overflow-hidden bg-[#0A0A0A] border border-white/30 min-h-[160px] rounded-[2px]"
           >
             {/* GAUCHE — INFOS + BARCODE */}
             <div className="flex flex-grow items-stretch">
@@ -107,16 +107,18 @@ const ConcertScheduleSection: React.FC = () => {
             </div>
 
             {/* DIVIDER — La ligne de séparation avec les encoches */}
-            <div className="relative w-0 border-l border-dashed border-white/40 h-full self-stretch flex-shrink-0">
-              {/* Encoche Haut (Cercle complet coupé par overflow-hidden) */}
+            <div className="relative w-px self-stretch flex flex-col justify-between items-center flex-shrink-0">
+              {/* Ligne en pointillés */}
+              <div className="absolute inset-y-0 left-0 border-l border-dashed border-white/40" />
+              
+              {/* Encoche Haut */}
               <div 
-                className="absolute top-[-12px] left-0 w-[24px] h-[24px] rounded-full bg-black border border-white/30 z-20"
-                style={{ transform: 'translateX(-50%)' }}
+                className="w-[28px] h-[28px] rounded-full bg-black border border-white/30 z-50 -mt-3.5 -ml-[0.5px] flex-shrink-0"
               />
-              {/* Encoche Bas (Cercle complet coupé par overflow-hidden) */}
+              
+              {/* Encoche Bas */}
               <div 
-                className="absolute bottom-[-12px] left-0 w-[24px] h-[24px] rounded-full bg-black border border-white/30 z-20"
-                style={{ transform: 'translateX(-50%)' }}
+                className="w-[28px] h-[28px] rounded-full bg-black border border-white/30 z-50 -mb-3.5 -ml-[0.5px] flex-shrink-0"
               />
             </div>
 
