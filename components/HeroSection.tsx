@@ -6,8 +6,7 @@ import { motion } from 'framer-motion';
 /**
  * HeroSection Component
  * Reproduces the Destroy Lonely "IF LOOKS COULD KILL" hero section.
- * Optimized for natural flow with Framer Motion entrance animations.
- * Borders on sides removed as requested.
+ * Fixed: Stuck to top of page and perfectly centered logo.
  */
 const HeroSection: React.FC = () => {
   const colors = {
@@ -20,17 +19,17 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="relative w-full flex flex-col items-center bg-black overflow-hidden pt-12 pb-12">
-      {/* Standardized 1400px Centered Container */}
+    <section className="relative w-full h-screen bg-black overflow-hidden flex flex-col items-center">
+      {/* Container sticky to top, no top padding */}
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="w-full max-w-[1400px] px-8 sm:px-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="w-full max-w-[1400px] h-full px-8 sm:px-4 flex flex-col"
       >
-        {/* Card Container - Vertical borders removed (border-x) */}
+        {/* Card Container - h-full to occupy entire height, border-b only */}
         <div 
-          className="relative w-full aspect-[16/10] bg-black overflow-hidden border-b border-white/10 rounded-[4px]"
+          className="relative w-full h-full bg-black overflow-hidden border-b border-white/10"
         >
           
           {/* Navigation */}
@@ -55,17 +54,17 @@ const HeroSection: React.FC = () => {
             </div>
           </nav>
 
-          {/* Hero Logo (Metallic Logo) */}
+          {/* Hero Logo (Metallic Logo) - Fixed Centering */}
           <motion.div 
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
-            className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[94%] pointer-events-none"
+            className="absolute inset-0 flex items-center justify-center pointer-events-none px-10"
           >
             <img 
               src="/Image/logo-metal.png" 
               alt="Destroy Lonely Logo"
-              className="w-full h-auto object-contain"
+              className="w-full max-h-[70%] object-contain"
             />
           </motion.div>
 
