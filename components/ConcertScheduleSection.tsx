@@ -48,7 +48,7 @@ const ConcertScheduleSection: React.FC = () => {
   return (
     <section className="relative w-full h-screen bg-[#000000] text-[#FFFFFF] font-sans px-8 flex flex-col items-center justify-center overflow-hidden">
       {/* Standardized 1000px Centered Container */}
-      <div className="w-full max-w-[1000px] flex flex-col">
+      <div className="w-full max-w-[1400px] flex flex-col">
         
         {/* HEADER DE SECTION */}
         <div className="relative mb-12 flex justify-between items-end">

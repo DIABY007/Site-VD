@@ -27,7 +27,7 @@ const AboutSection: React.FC = () => {
       <div className="absolute top-0 w-full h-[1px]" style={{ backgroundColor: colors.borderSeparator }} />
 
       {/* Standardized 1000px Centered Container */}
-      <div className="w-full max-w-[1000px] h-full relative px-8 flex flex-col justify-center border-x border-white/5">
+      <div className="w-full max-w-[1400px] h-full relative px-8 flex flex-col justify-center border-x border-white/5">
         {/* Decorative Crosses */}
         <div className="absolute top-[24px] left-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
         <div className="absolute top-[24px] right-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>

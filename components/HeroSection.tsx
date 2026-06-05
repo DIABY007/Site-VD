@@ -19,7 +19,7 @@ const HeroSection: React.FC = () => {
   return (
     <section className="relative w-full h-screen flex flex-col items-center bg-black overflow-hidden">
       {/* Standardized 1000px Centered Container that takes full height */}
-      <div className="w-full max-w-[1000px] h-full px-8 sm:px-4">
+      <div className="w-full max-w-[1400px] h-full px-8 sm:px-4">
         {/* Card Container - now h-full to occupy entire height and border only on sides if needed, 
             but here we keep it as a full box that sticks to top/bottom */}
         <div 

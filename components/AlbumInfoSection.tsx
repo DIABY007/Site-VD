@@ -13,7 +13,7 @@ const AlbumInfoSection: React.FC = () => {
   return (
     <section className="relative w-full h-screen bg-[#000000] text-[#FFFFFF] font-sans px-8 flex flex-col items-center justify-center overflow-hidden">
       {/* Standardized 1000px Centered Container */}
-      <div className="w-full max-w-[1000px] flex flex-col">
+      <div className="w-full max-w-[1400px] flex flex-col">
         
         <div className="grid grid-cols-[45%_55%] gap-12 items-start mb-16">
           {/* COLONNE GAUCHE */}
