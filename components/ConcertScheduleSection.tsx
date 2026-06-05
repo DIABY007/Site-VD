@@ -72,7 +72,10 @@ const ConcertScheduleSection: React.FC = () => {
       {/* LISTE TICKETS */}
       <div className="flex flex-col relative w-full gap-[20px]">
         {events.map((event, index) => (
-          <div key={event.id} className="ticket-card">
+          <div 
+            key={event.id} 
+            className="flex relative overflow-hidden bg-black/40 border border-white/30 min-h-[160px] rounded-[2px]"
+          >
             {/* GAUCHE — INFOS + BARCODE */}
             <div className="flex flex-grow items-stretch">
               {/* INFOS ÉVÉNEMENT */}
@@ -104,7 +107,18 @@ const ConcertScheduleSection: React.FC = () => {
             </div>
 
             {/* DIVIDER — La ligne de séparation avec les encoches */}
-            <div className="divider"></div>
+            <div className="relative w-0 border-l border-dashed border-white/40 h-full self-stretch flex-shrink-0">
+              {/* Encoche Haut (Cercle complet coupé par overflow-hidden) */}
+              <div 
+                className="absolute top-[-12px] left-0 w-[24px] h-[24px] rounded-full bg-black border border-white/30 z-20"
+                style={{ transform: 'translateX(-50%)' }}
+              />
+              {/* Encoche Bas (Cercle complet coupé par overflow-hidden) */}
+              <div 
+                className="absolute bottom-[-12px] left-0 w-[24px] h-[24px] rounded-full bg-black border border-white/30 z-20"
+                style={{ transform: 'translateX(-50%)' }}
+              />
+            </div>
 
             {/* DROITE — TICKET TYPE + CTA */}
             <div className="flex flex-col justify-between items-end p-7 w-[28%] shrink-0">
@@ -135,49 +149,6 @@ const ConcertScheduleSection: React.FC = () => {
           font-family: 'Helvetica Neue', sans-serif;
           margin: 0;
           background-color: #000;
-        }
-
-        /* LOGIQUE CSS POUR LE TICKET */
-        .ticket-card {
-          display: flex;
-          position: relative;
-          overflow: hidden;
-          background: rgba(0, 0, 0, 0.4);
-          border: 1px solid rgba(255, 255, 255, 0.3);
-          min-height: 160px;
-          border-radius: 2px;
-        }
-
-        .divider {
-          position: relative;
-          width: 0;
-          border-left: 1px dashed rgba(255, 255, 255, 0.4);
-          height: 100%;
-          align-self: stretch;
-          flex-shrink: 0;
-        }
-
-        /* Les encoches (L'illusion d'optique par débordement) */
-        .divider::before,
-        .divider::after {
-          content: '';
-          position: absolute;
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          background-color: #000;
-          border: 1px solid rgba(255, 255, 255, 0.3);
-          left: 0;
-          transform: translateX(-50%);
-          z-index: 20;
-        }
-
-        .divider::before {
-          top: -12px;
-        }
-
-        .divider::after {
-          bottom: -12px;
         }
       `}</style>
     </section>
