@@ -42,109 +42,113 @@ const Barcode: React.FC = () => {
 const ConcertScheduleSection: React.FC = () => {
   return (
     <section className="relative w-full bg-[#000000] text-[#FFFFFF] font-sans px-8 py-12 flex flex-col overflow-hidden">
-      {/* HEADER DE SECTION */}
-      <div className="relative mb-10">
-        <div className="flex flex-col">
-          <div className="flex items-start gap-[10px]">
-            <span className="text-[#FF2200] text-[8px] mt-[14px]">●</span>
-            <div className="flex flex-col">
-              <h2 className="text-[64px] font-[800] tracking-[-0.02em] uppercase text-white/25 leading-[0.92]">
-                CONCERT
-              </h2>
-              <h2 className="text-[64px] font-[800] tracking-[-0.02em] uppercase text-white/25 leading-[0.92]">
-                SCHEDULE
-              </h2>
+      {/* CONTENEUR GLOBAL LIMITÉ */}
+      <div className="w-full max-w-[1000px] mx-auto flex flex-col">
+        
+        {/* HEADER DE SECTION */}
+        <div className="relative mb-12 flex justify-between items-end">
+          <div className="flex flex-col">
+            <div className="flex items-start gap-4">
+              <span className="text-[#FF2200] text-[10px] mt-[26px]">●</span>
+              <div className="flex flex-col uppercase leading-[0.85]">
+                <h2 className="text-[3.5rem] font-[800] tracking-[-0.02em] text-white">
+                  CONCERT
+                </h2>
+                <h2 className="text-[3.5rem] font-[800] tracking-[-0.02em] text-white/40">
+                  SCHEDULE
+                </h2>
+              </div>
             </div>
+          </div>
+
+          {/* Année (top-right aligné avec le header) */}
+          <div className="flex flex-col items-end leading-[0.85]">
+            <span className="text-[3.5rem] font-[800] tracking-[-0.02em] text-white/50">
+              2023
+            </span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-white/40 mt-3 cursor-pointer hover:text-white transition-colors duration-200">
+              LATEST ↓
+            </span>
           </div>
         </div>
 
-        {/* Année + filtre (top-right) */}
-        <div className="absolute top-0 right-0 flex flex-col items-end">
-          <span className="text-[64px] font-[800] tracking-[-0.02em] text-white/25 leading-[0.92]">
-            2023
-          </span>
-          <span className="text-[10px] uppercase tracking-[0.2em] text-white/40 mt-2 cursor-pointer hover:text-white transition-colors duration-200">
-            LATEST ↓
-          </span>
+        {/* LISTE TICKETS */}
+        <div className="flex flex-col relative w-full gap-[20px]">
+          {events.map((event, index) => (
+            <div 
+              key={event.id} 
+              className="flex relative overflow-hidden bg-[#0A0A0A] min-h-[160px] rounded-[2px]"
+            >
+              {/* BORDURE DU TICKET (Positionnée de manière à être "mangée" par les encoches) */}
+              <div className="absolute inset-0 border border-white/30 rounded-[2px] z-10 pointer-events-none" />
+
+              {/* GAUCHE — INFOS + BARCODE (70% Largeur) */}
+              <div className="flex w-[70%] items-stretch relative z-20 px-10 py-8">
+                {/* INFOS ÉVÉNEMENT */}
+                <div className="flex flex-col flex-grow uppercase">
+                  <div>
+                    <h3 className="text-[1.25rem] font-[600] tracking-[0.05em] text-white mb-3">
+                      {event.name}
+                    </h3>
+                    <p className="text-[0.85rem] tracking-[0.05em] leading-[1.4] text-[#a0a0a0] whitespace-pre-line">
+                      {event.location}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-row items-center gap-[10px] mt-auto">
+                    <span className="text-[0.85rem] tracking-[0.05em] text-[#a0a0a0]">
+                      {event.date}
+                    </span>
+                    <span className="text-[#ff3333] text-[6px] leading-none">●</span>
+                    <span className="text-[0.85rem] tracking-[0.05em] text-[#a0a0a0]">
+                      {event.time}
+                    </span>
+                  </div>
+                </div>
+
+                {/* BARCODE */}
+                <div className="flex items-center justify-center pl-6">
+                  <Barcode />
+                </div>
+              </div>
+
+              {/* DIVIDER — La ligne de séparation avec les encoches */}
+              <div className="relative w-px self-stretch flex flex-col justify-between items-center flex-shrink-0 z-30">
+                {/* Ligne en pointillés */}
+                <div className="absolute inset-y-0 left-0 border-l border-dashed border-white/40" />
+                
+                {/* Encoche Haut (Cercle plein noir qui recouvre la bordure du ticket) */}
+                <div 
+                  className="w-[28px] h-[28px] rounded-full bg-black border border-white/30 z-50 -mt-3.5 -ml-[0.5px] flex-shrink-0"
+                />
+                
+                {/* Encoche Bas (Cercle plein noir qui recouvre la bordure du ticket) */}
+                <div 
+                  className="w-[28px] h-[28px] rounded-full bg-black border border-white/30 z-50 -mb-3.5 -ml-[0.5px] flex-shrink-0"
+                />
+              </div>
+
+              {/* DROITE — TICKET TYPE + CTA (30% Largeur) */}
+              <div className="flex w-[30%] flex-col justify-center items-center px-10 py-8 relative z-20 gap-6">
+                <div className="text-center uppercase">
+                  {event.typeLines.map((line, i) => (
+                    <p key={i} className="text-[0.75rem] tracking-[0.05em] text-[#a0a0a0] leading-tight">
+                      {line}
+                    </p>
+                  ))}
+                </div>
+
+                <motion.button
+                  whileHover={{ backgroundColor: '#FFFFFF', color: '#000000' }}
+                  transition={{ duration: 0.2 }}
+                  className="border border-white/40 rounded-full px-6 py-2 text-[0.75rem] uppercase tracking-[0.1em] text-white bg-transparent whitespace-nowrap"
+                >
+                  BUY NOW →
+                </motion.button>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-
-      {/* LISTE TICKETS */}
-      <div className="flex flex-col relative w-full gap-[20px]">
-        {events.map((event, index) => (
-          <div 
-            key={event.id} 
-            className="flex relative overflow-hidden bg-[#0A0A0A] min-h-[160px] rounded-[2px]"
-          >
-            {/* BORDURE DU TICKET (Positionnée de manière à être "mangée" par les encoches) */}
-            <div className="absolute inset-0 border border-white/30 rounded-[2px] z-10 pointer-events-none" />
-
-            {/* GAUCHE — INFOS + BARCODE */}
-            <div className="flex flex-grow items-stretch relative z-20">
-              {/* INFOS ÉVÉNEMENT */}
-              <div className="flex flex-col justify-between p-7 flex-grow">
-                <div>
-                  <h3 className="text-[15px] font-[600] tracking-[0.08em] uppercase text-white mb-3">
-                    {event.name}
-                  </h3>
-                  <p className="text-[10px] uppercase tracking-[0.1em] leading-[1.7] text-white/45 whitespace-pre-line">
-                    {event.location}
-                  </p>
-                </div>
-
-                <div className="flex flex-row items-center gap-[10px] mt-auto pt-5">
-                  <span className="text-[10px] uppercase tracking-[0.12em] text-white/55">
-                    {event.date}
-                  </span>
-                  <span className="text-[#FF2200] text-[5px] leading-none">●</span>
-                  <span className="text-[10px] uppercase tracking-[0.12em] text-white/55">
-                    {event.time}
-                  </span>
-                </div>
-              </div>
-
-              {/* BARCODE */}
-              <div className="flex items-center justify-center px-4">
-                <Barcode />
-              </div>
-            </div>
-
-            {/* DIVIDER — La ligne de séparation avec les encoches */}
-            <div className="relative w-px self-stretch flex flex-col justify-between items-center flex-shrink-0 z-30">
-              {/* Ligne en pointillés */}
-              <div className="absolute inset-y-0 left-0 border-l border-dashed border-white/40" />
-              
-              {/* Encoche Haut (Cercle plein noir qui recouvre la bordure du ticket) */}
-              <div 
-                className="w-[28px] h-[28px] rounded-full bg-black border border-white/30 z-50 -mt-3.5 -ml-[0.5px] flex-shrink-0"
-              />
-              
-              {/* Encoche Bas (Cercle plein noir qui recouvre la bordure du ticket) */}
-              <div 
-                className="w-[28px] h-[28px] rounded-full bg-black border border-white/30 z-50 -mb-3.5 -ml-[0.5px] flex-shrink-0"
-              />
-            </div>
-
-            {/* DROITE — TICKET TYPE + CTA */}
-            <div className="flex flex-col justify-between items-end p-7 w-[28%] shrink-0 relative z-20">
-              <div className="text-right">
-                {event.typeLines.map((line, i) => (
-                  <p key={i} className="text-[10px] uppercase tracking-[0.18em] text-white/70 leading-tight">
-                    {line}
-                  </p>
-                ))}
-              </div>
-
-              <motion.button
-                whileHover={{ backgroundColor: '#FFFFFF', color: '#000000' }}
-                transition={{ duration: 0.2 }}
-                className="border border-white/80 rounded-full px-4 py-[7px] text-[10px] uppercase tracking-[0.1em] text-white bg-transparent whitespace-nowrap mt-auto self-end"
-              >
-                BUY NOW →
-              </motion.button>
-            </div>
-          </div>
-        ))}
       </div>
 
       <style jsx global>{`
