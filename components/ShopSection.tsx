@@ -4,7 +4,18 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-const products = [
+interface Product {
+  id: number;
+  name: string;
+  price: string;
+  shipsOn: string;
+  tags: string[];
+  image: string;
+  description?: string;
+  note?: string;
+}
+
+const products: Product[] = [
   {
     id: 1,
     name: "KILLA MASK",
