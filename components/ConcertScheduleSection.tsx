@@ -24,7 +24,7 @@ const events = [
 
 /**
  * Barcode Component
- * Updated to occupy full height of its container and align with the divider line.
+ * Set to h-full to match the height of its flex parent.
  */
 const Barcode: React.FC = () => {
   return (
@@ -46,8 +46,7 @@ const Barcode: React.FC = () => {
 /**
  * ConcertScheduleSection Component
  * Reproduces the concert tour list.
- * Optimized for natural flow with scroll animations.
- * Barcode height matched with the divider/notch height.
+ * Optimized: Barcode and Divider are perfectly parallel and identical in height.
  */
 const ConcertScheduleSection: React.FC = () => {
   return (
@@ -100,9 +99,11 @@ const ConcertScheduleSection: React.FC = () => {
             >
               <div className="absolute inset-0 border border-white/30 rounded-[2px] z-10 pointer-events-none" />
 
-              {/* GAUCHE (70% Largeur) */}
-              <div className="flex w-[70%] items-stretch relative z-20 px-12 py-10">
-                <div className="flex flex-col flex-grow uppercase">
+              {/* CONTENU PRINCIPAL (Flex Row pour aligner Barcode et Divider) */}
+              <div className="flex w-full items-stretch relative z-20">
+                
+                {/* GAUCHE - INFOS (65% environ) */}
+                <div className="flex flex-grow flex-col justify-between uppercase px-12 py-10">
                   <div>
                     <h3 className="text-[1.5rem] font-[600] tracking-[0.05em] text-white mb-3">
                       {event.name}
@@ -112,7 +113,7 @@ const ConcertScheduleSection: React.FC = () => {
                     </p>
                   </div>
 
-                  <div className="flex flex-row items-center gap-[12px] mt-auto">
+                  <div className="flex flex-row items-center gap-[12px] mt-8">
                     <span className="text-[0.95rem] tracking-[0.05em] text-[#a0a0a0]">
                       {event.date}
                     </span>
@@ -123,36 +124,37 @@ const ConcertScheduleSection: React.FC = () => {
                   </div>
                 </div>
 
-                {/* BARCODE - h-full used to match the divider line height */}
-                <div className="flex items-center justify-center pl-10 h-full py-2">
-                  <Barcode />
-                </div>
-              </div>
-
-              {/* DIVIDER & NOTCHES */}
-              <div className="relative w-px self-stretch flex flex-col justify-between items-center flex-shrink-0 z-30">
-                <div className="absolute inset-y-0 left-0 border-l border-dashed border-white/40" />
-                <div className="w-[28px] h-[28px] rounded-full bg-black border border-white/30 z-50 -mt-3.5 -ml-[0.5px] flex-shrink-0" />
-                <div className="w-[28px] h-[28px] rounded-full bg-black border border-white/30 z-50 -mb-3.5 -ml-[0.5px] flex-shrink-0" />
-              </div>
-
-              {/* DROITE (30% Largeur) */}
-              <div className="flex w-[30%] flex-col justify-center items-center px-12 py-10 relative z-20 gap-8">
-                <div className="text-center uppercase">
-                  {event.typeLines.map((line, i) => (
-                    <p key={i} className="text-[0.85rem] tracking-[0.05em] text-[#a0a0a0] leading-tight">
-                      {line}
-                    </p>
-                  ))}
+                {/* CENTRE - BARCODE (Identique en hauteur au Divider) */}
+                <div className="flex items-stretch py-10 pr-10">
+                   <Barcode />
                 </div>
 
-                <motion.button
-                  whileHover={{ scale: 1.05, backgroundColor: 'white', color: 'black' }}
-                  whileTap={{ scale: 0.95 }}
-                  className="border border-white/40 rounded-full px-8 py-3 text-[0.85rem] uppercase tracking-[0.1em] text-white bg-transparent whitespace-nowrap transition-colors duration-200"
-                >
-                  BUY NOW →
-                </motion.button>
+                {/* DIVIDER & NOTCHES (Strictement parallèle au Barcode) */}
+                <div className="relative w-px self-stretch flex flex-col justify-between items-center flex-shrink-0">
+                    <div className="absolute inset-y-0 left-0 border-l border-dashed border-white/40" />
+                    <div className="w-[28px] h-[28px] rounded-full bg-black border border-white/30 z-50 -mt-3.5 -ml-[0.5px] flex-shrink-0" />
+                    <div className="w-[28px] h-[28px] rounded-full bg-black border border-white/30 z-50 -mb-3.5 -ml-[0.5px] flex-shrink-0" />
+                </div>
+
+                {/* DROITE - TICKET TYPE + CTA (30% environ) */}
+                <div className="flex w-[30%] flex-col justify-center items-center px-12 py-10 gap-8">
+                  <div className="text-center uppercase">
+                    {event.typeLines.map((line, i) => (
+                      <p key={i} className="text-[0.85rem] tracking-[0.05em] text-[#a0a0a0] leading-tight">
+                        {line}
+                      </p>
+                    ))}
+                  </div>
+
+                  <motion.button
+                    whileHover={{ scale: 1.05, backgroundColor: 'white', color: 'black' }}
+                    whileTap={{ scale: 0.95 }}
+                    className="border border-white/40 rounded-full px-8 py-3 text-[0.85rem] uppercase tracking-[0.1em] text-white bg-transparent whitespace-nowrap transition-colors duration-200"
+                  >
+                    BUY NOW →
+                  </motion.button>
+                </div>
+
               </div>
             </motion.div>
           ))}
