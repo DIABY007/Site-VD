@@ -6,19 +6,19 @@ import { motion } from 'framer-motion';
 const events = [
   {
     id: 1,
-    name: "ROLLING LOUD ROTTERDAM 2023",
-    location: "ROTTERDAM AHOK,\nROTTERDAM",
-    date: "FRIDAY, 26 \\\\ 09 \\\\ 2023",
-    time: "8:00 PM",
-    typeLines: ["FULL PASS", "TICKET"],
+    name: "BOBO AMBIANCE",
+    location: "BOBO-DIOULASSO,\nSECTEUR 24",
+    date: "VENDREDI, 26 \\\\ 09 \\\\ 2023",
+    time: "20:00",
+    typeLines: ["PASS COMPLET", "TICKET"],
   },
   {
     id: 2,
-    name: "SUMMER FEST 2023",
-    location: "SPECIAL REGION OF\nYOGYAKARTA,\nINDONESIA",
-    date: "THRUSDAY, 26 \\\\ 09 \\\\ 2023",
-    time: "8:00 PM",
-    typeLines: ["FULL PASS", "TICKET"],
+    name: "AFRO TRAP",
+    location: "BOBO-DIOULASSO,\nMAISON DE LA CULTURE",
+    date: "JEUDI, 26 \\\\ 09 \\\\ 2023",
+    time: "20:00",
+    typeLines: ["PASS COMPLET", "TICKET"],
   }
 ];
 
@@ -49,6 +49,12 @@ const Barcode: React.FC = () => {
  * Optimized: Barcode and Divider are perfectly parallel and identical in height.
  */
 const ConcertScheduleSection: React.FC = () => {
+  const whatsappNumber = "22674855416";
+  const getWhatsAppLink = (eventName: string) => {
+    const message = encodeURIComponent(`Bonjour, je souhaite acheter un ticket pour l'évènement : ${eventName}`);
+    return `https://wa.me/${whatsappNumber}?text=${message}`;
+  };
+
   return (
     <section id="concerts" className="relative w-full bg-[#000000] text-[#FFFFFF] font-sans px-8 py-20 flex flex-col items-center overflow-hidden">
       {/* Standardized 1400px Centered Container */}
@@ -67,10 +73,10 @@ const ConcertScheduleSection: React.FC = () => {
               <span className="text-[#FF2200] text-[10px] mt-[26px]">●</span>
               <div className="flex flex-col uppercase leading-[0.85]">
                 <h2 className="text-[3.5rem] font-[800] tracking-[-0.02em] text-white">
-                  CONCERT
+                  CALENDRIER
                 </h2>
                 <h2 className="text-[3.5rem] font-[800] tracking-[-0.02em] text-white/40">
-                  SCHEDULE
+                  DES CONCERTS
                 </h2>
               </div>
             </div>
@@ -78,10 +84,10 @@ const ConcertScheduleSection: React.FC = () => {
 
           <div className="flex flex-col items-end leading-[0.85]">
             <span className="text-[3.5rem] font-[800] tracking-[-0.02em] text-white/50">
-              2023
+              2025
             </span>
             <span className="text-[10px] uppercase tracking-[0.2em] text-white/40 mt-3 cursor-pointer hover:text-white transition-colors duration-200">
-              LATEST ↓
+              PLUS RÉCENTS ↓
             </span>
           </div>
         </div>
@@ -146,13 +152,19 @@ const ConcertScheduleSection: React.FC = () => {
                     ))}
                   </div>
 
-                  <motion.button
-                    whileHover={{ scale: 1.05, backgroundColor: 'white', color: 'black' }}
-                    whileTap={{ scale: 0.95 }}
-                    className="border border-white/40 rounded-full px-8 py-3 text-[0.85rem] uppercase tracking-[0.1em] text-white bg-transparent whitespace-nowrap transition-colors duration-200"
+                  <a 
+                    href={getWhatsAppLink(event.name)}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    BUY NOW →
-                  </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.05, backgroundColor: 'white', color: 'black' }}
+                      whileTap={{ scale: 0.95 }}
+                      className="border border-white/40 rounded-full px-8 py-3 text-[0.85rem] uppercase tracking-[0.1em] text-white bg-transparent whitespace-nowrap transition-colors duration-200"
+                    >
+                      ACHETER →
+                    </motion.button>
+                  </a>
                 </div>
 
               </div>
