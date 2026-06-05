@@ -5,8 +5,8 @@ import { motion } from 'framer-motion';
 
 /**
  * HeroSection Component
- * Reproduces the Destroy Lonely "IF LOOKS COULD KILL" hero section.
- * Fixed: Stuck to top of page and perfectly centered logo.
+ * Personalized for DFG / VD.
+ * Features updated navigation, descriptive text, and Spotify integration.
  */
 const HeroSection: React.FC = () => {
   const colors = {
@@ -35,26 +35,27 @@ const HeroSection: React.FC = () => {
           {/* Navigation */}
           <nav className="absolute top-0 left-0 w-full h-[80px] flex justify-between items-center px-[32px] z-20">
             <div className="flex items-center gap-[16px] text-[11px] font-normal tracking-[0.12em] text-white uppercase">
-              <span>ABOUT</span>
+              <a href="#about" className="hover:text-white/70 transition-colors">À PROPOS</a>
               <span style={{ color: colors.accentRed }}>•</span>
-              <span>MUSIC</span>
+              <a href="#music" className="hover:text-white/70 transition-colors">MUSIC</a>
             </div>
 
-            <div className="text-center leading-tight">
-              <h1 className="text-[13px] font-normal tracking-[0.25em] text-white uppercase flex flex-col items-center">
-                <span>DESTROY</span>
-                <span>LONELY</span>
-              </h1>
+            <div className="flex items-center justify-center">
+               <img 
+                 src="/Image/DFG.jpg" 
+                 alt="DFG Logo" 
+                 className="h-[30px] w-auto object-contain brightness-110"
+               />
             </div>
 
             <div className="flex items-center gap-[16px] text-[11px] font-normal tracking-[0.12em] text-white uppercase">
-              <span>SHOP</span>
+              <a href="#shop" className="hover:text-white/70 transition-colors">SHOP</a>
               <span style={{ color: colors.accentRed }}>•</span>
-              <span>TOUR</span>
+              <a href="#concerts" className="hover:text-white/70 transition-colors">ÉVÉNEMENT</a>
             </div>
           </nav>
 
-          {/* Hero Logo (Metallic Logo) - Fixed Centering */}
+          {/* Hero Logo (Metallic Logo) */}
           <motion.div 
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -63,7 +64,7 @@ const HeroSection: React.FC = () => {
           >
             <img 
               src="/Image/logo-metal.png" 
-              alt="Destroy Lonely Logo"
+              alt="Metallic Logo"
               className="w-full max-h-[70%] object-contain"
             />
           </motion.div>
@@ -82,24 +83,30 @@ const HeroSection: React.FC = () => {
                   style={{ borderColor: colors.borderTag }}
                 >
                   <span style={{ color: colors.accentRed }}>•</span>
-                  IFLOOKSCOULDKILL
+                  DFG_COLLECTIF
                 </div>
 
-                <motion.button 
-                  whileHover={{ scale: 1.05, backgroundColor: 'white', color: 'black' }}
-                  whileTap={{ scale: 0.95 }}
-                  className="group flex items-center gap-[4px] px-[14px] py-[6px] rounded-full border text-[11px] font-normal tracking-[0.1em] text-white uppercase transition-colors duration-200"
-                  style={{ borderColor: colors.borderCTA }}
+                <a 
+                  href="https://open.spotify.com/artist/6eCjfb7NwT8soKEZoJMaU1?si=AapVWf_aTQmmZFwfE25m0Q"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  STREAM NOW →
-                </motion.button>
+                  <motion.button 
+                    whileHover={{ scale: 1.05, backgroundColor: 'white', color: 'black' }}
+                    whileTap={{ scale: 0.95 }}
+                    className="group flex items-center gap-[4px] px-[14px] py-[6px] rounded-full border text-[11px] font-normal tracking-[0.1em] text-white uppercase transition-colors duration-200"
+                    style={{ borderColor: colors.borderCTA }}
+                  >
+                    STREAM MAINTENANT →
+                  </motion.button>
+                </a>
               </div>
 
               <div 
                 className="text-[10px] font-normal tracking-[0.15em] uppercase"
                 style={{ color: colors.textMetadata }}
               >
-                03 - 05 &nbsp;\\&nbsp; 23
+                06 - 05 &nbsp;\\&nbsp; 26
               </div>
             </motion.div>
 
@@ -107,16 +114,16 @@ const HeroSection: React.FC = () => {
               initial={{ x: 20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="flex flex-col items-center gap-[24px] max-w-[220px]"
+              className="flex flex-col items-center gap-[24px] max-w-[400px]"
             >
+              {/* Description Text Updated */}
               <p 
                 className="text-[10.5px] font-normal tracking-[0.06em] leading-[1.7] uppercase text-center"
                 style={{ color: colors.textSecondary }}
               >
-                IF LOOKS COULD KILL IS COMPILED OF<br />
-                SONGS FLOATING OVER HAZY ELECTRIC<br />
-                GUITAR LINES WITH BLENDS OF<br />
-                SURREALISTIC MELODIES
+                DES MÉLODIES FROIDES COUPÉES PAR DES KICKS VIOLENTS.<br />
+                VD FUSIONNE LA LANGUE DE MOLIÈRE ET L'ÂME DU DIOULA<br />
+                POUR FORGER UNE NOUVELLE ÈRE SONORE AVEC LE DFG
               </p>
 
               <div className="w-full flex justify-end">
@@ -124,7 +131,7 @@ const HeroSection: React.FC = () => {
                   className="text-[10px] font-normal tracking-[0.15em] uppercase"
                   style={{ color: colors.textMetadata }}
                 >
-                  2023
+                  2026
                 </span>
               </div>
             </motion.div>
