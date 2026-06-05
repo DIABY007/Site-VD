@@ -23,23 +23,19 @@ const events = [
 ];
 
 const Barcode: React.FC = () => {
-  const barWidths = [2, 1, 3, 1, 2, 1, 1, 3, 2, 1, 2, 3, 1, 1, 2, 3, 1, 2, 1, 3, 1, 2];
-  const barGaps = [2, 3, 1, 2, 1, 3, 2, 1, 2, 1, 3, 1, 2, 3, 1, 2, 1, 2, 3, 1, 2, 1];
-
   return (
-    <div className="flex flex-row items-center justify-center px-4 h-full">
-      {barWidths.map((width, i) => (
-        <div
-          key={i}
-          style={{
-            width: `${width}px`,
-            height: i % 2 === 0 ? '72px' : '52px',
-            marginRight: `${barGaps[i]}px`,
-          }}
-          className="bg-white flex-shrink-0"
-        />
-      ))}
-    </div>
+    <div 
+      className="w-[20px] h-[72px] opacity-40"
+      style={{
+        background: `repeating-linear-gradient(
+          to bottom,
+          #fff,
+          #fff 2px,
+          transparent 2px,
+          transparent 4px
+        )`
+      }}
+    />
   );
 };
 
@@ -74,7 +70,7 @@ const ConcertScheduleSection: React.FC = () => {
       </div>
 
       {/* LISTE TICKETS */}
-      <div className="flex flex-col relative w-full">
+      <div className="flex flex-col relative w-full gap-[24px]">
         {events.map((event, index) => (
           <div key={event.id} className="ticket-card">
             {/* GAUCHE — INFOS + BARCODE */}
@@ -155,19 +151,18 @@ const ConcertScheduleSection: React.FC = () => {
         .divider {
           position: relative;
           width: 0;
-          border-right: 1px dashed rgba(255, 255, 255, 0.3);
+          border-right: 1px dashed rgba(255, 255, 255, 0.2);
           height: 100%;
         }
 
-        /* Les encoches (Le secret du composant) */
+        /* Les encoches (Vrais demi-cercles intérieurs) */
         .divider::before,
         .divider::after {
           content: '';
           position: absolute;
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-          background-color: #000; /* Fond identique au background global */
+          width: 20px;
+          height: 10px;
+          background-color: #000;
           border: 1px solid rgba(255, 255, 255, 0.1);
           left: 0;
           transform: translateX(-50%);
@@ -175,11 +170,15 @@ const ConcertScheduleSection: React.FC = () => {
         }
 
         .divider::before {
-          top: -15px; /* Débordement haut */
+          top: -1px;
+          border-radius: 0 0 10px 10px;
+          border-top: none;
         }
 
         .divider::after {
-          bottom: -15px; /* Débordement bas */
+          bottom: -1px;
+          border-radius: 10px 10px 0 0;
+          border-bottom: none;
         }
       `}</style>
     </section>
