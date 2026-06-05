@@ -22,7 +22,7 @@ const AboutSection: React.FC = () => {
   };
 
   return (
-    <section className="relative w-full bg-black overflow-hidden flex flex-col items-center py-20">
+    <section id="about" className="relative w-full bg-black overflow-hidden flex flex-col items-center py-20">
       {/* Top Separator Line */}
       <div className="absolute top-0 w-full h-[1px]" style={{ backgroundColor: colors.borderSeparator }} />
 

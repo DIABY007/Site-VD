@@ -11,7 +11,7 @@ import { motion } from 'framer-motion';
  */
 const AlbumInfoSection: React.FC = () => {
   return (
-    <section className="relative w-full bg-[#000000] text-[#FFFFFF] font-sans px-8 py-20 flex flex-col items-center overflow-hidden">
+    <section id="music" className="relative w-full bg-[#000000] text-[#FFFFFF] font-sans px-8 py-20 flex flex-col items-center overflow-hidden">
       {/* Standardized 1400px Centered Container */}
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
