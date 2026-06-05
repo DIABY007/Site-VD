@@ -25,7 +25,7 @@ const events = [
 const Barcode: React.FC = () => {
   return (
     <div 
-      className="w-[20px] h-[72px] opacity-40"
+      className="w-[20px] h-[72px]"
       style={{
         background: `repeating-linear-gradient(
           to bottom,
@@ -143,7 +143,7 @@ const ConcertScheduleSection: React.FC = () => {
           position: relative;
           overflow: hidden;
           background: rgba(0, 0, 0, 0.4);
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.3);
           min-height: 160px;
           border-radius: 2px;
         }
@@ -151,7 +151,7 @@ const ConcertScheduleSection: React.FC = () => {
         .divider {
           position: relative;
           width: 0;
-          border-right: 1px dashed rgba(255, 255, 255, 0.3);
+          border-right: 1px dashed rgba(255, 255, 255, 0.4);
           height: 100%;
         }
 
@@ -164,8 +164,8 @@ const ConcertScheduleSection: React.FC = () => {
           height: 24px;
           border-radius: 50%;
           background-color: #000;
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          left: 0;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          left: 1px; /* Alignement sur la bordure dashed */
           transform: translateX(-50%);
           z-index: 10;
         }
