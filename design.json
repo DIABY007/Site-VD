@@ -1,0 +1,298 @@
+{
+  "meta": {
+    "project": "Destroy Lonely — IFLOOKSCOULDKILL",
+    "version": "1.0.0",
+    "year": "2023",
+    "artistic_direction": "Dark luxury editorial. Black metal typography meets minimal hypebeast layout. Aucune couleur superflue. Chaque élément respire l'intentionnalité.",
+    "design_philosophy": [
+      "Contraste extrême : noir absolu vs blanc pur, rien entre les deux sauf un rouge chirurgical",
+      "La typographie EST le design — le logo métallique occupe ~70% du viewport",
+      "Espace négatif généreux autour de tout contenu textuel",
+      "Layout asymétrique contrôlé : texte bas-gauche / texte bas-droite en tension",
+      "Densité zéro : chaque élément existe seul, jamais en cluster",
+      "Aucun effet décoratif parasite — la brutalité vient de l'absence, pas de l'ajout"
+    ]
+  },
+
+  "tokens": {
+    "colors": {
+      "background": {
+        "primary": "#000000",
+        "page_frame": "#1A1A1A",
+        "description": "Noir absolu sur fond légèrement plus clair pour créer un effet de carte flottante"
+      },
+      "text": {
+        "primary": "#FFFFFF",
+        "secondary": "rgba(255,255,255,0.55)",
+        "description": "Blanc pur pour nav et CTA. Blanc 55% pour le body text descriptif"
+      },
+      "accent": {
+        "red": "#FF2200",
+        "description": "Rouge unique, utilisé UNIQUEMENT comme bullet separator dans la nav et prefix du tag album. Jamais ailleurs."
+      },
+      "logo": {
+        "material": "chrome_liquid_metal",
+        "base": "#C0C0C0",
+        "highlight": "#FFFFFF",
+        "shadow": "#1A1A1A",
+        "description": "Effet métal liquide chromé 3D. Pas un SVG plat — texture avec reflets spéculaires, depth par ombres profondes"
+      }
+    },
+
+    "typography": {
+      "nav": {
+        "font_family": "system uppercase tracking — recommandé: 'Helvetica Neue', sans-serif",
+        "font_size": "11px",
+        "font_weight": "400",
+        "letter_spacing": "0.12em",
+        "text_transform": "uppercase",
+        "color": "#FFFFFF"
+      },
+      "logo_wordmark": {
+        "font_family": "Helvetica Neue, sans-serif",
+        "font_size": "13px",
+        "font_weight": "400",
+        "letter_spacing": "0.25em",
+        "text_transform": "uppercase",
+        "text_align": "center",
+        "position": "nav_center",
+        "color": "#FFFFFF"
+      },
+      "hero_logo": {
+        "type": "custom_3d_metal_lettering",
+        "style": "death_metal_blackletter_chrome",
+        "asset": "imported — logo métallique existant de l'utilisateur",
+        "width": "95vw",
+        "vertical_position": "center_slightly_above_middle",
+        "description": "Typographie organique bio-mécanique. Lettres avec tentacules et crochets. Rendu 3D avec matière chrome liquide. AUCUN substitut texte acceptable."
+      },
+      "tag": {
+        "font_family": "Helvetica Neue, monospace fallback",
+        "font_size": "10px",
+        "font_weight": "400",
+        "letter_spacing": "0.08em",
+        "text_transform": "uppercase",
+        "color": "#FFFFFF"
+      },
+      "cta_button": {
+        "font_family": "Helvetica Neue",
+        "font_size": "11px",
+        "font_weight": "400",
+        "letter_spacing": "0.1em",
+        "text_transform": "uppercase",
+        "color": "#FFFFFF"
+      },
+      "descriptor_text": {
+        "font_family": "Helvetica Neue, sans-serif",
+        "font_size": "10.5px",
+        "font_weight": "400",
+        "letter_spacing": "0.06em",
+        "line_height": "1.7",
+        "text_transform": "uppercase",
+        "text_align": "center",
+        "color": "rgba(255,255,255,0.55)",
+        "max_width": "220px"
+      },
+      "metadata": {
+        "font_family": "Helvetica Neue, monospace",
+        "font_size": "10px",
+        "font_weight": "400",
+        "letter_spacing": "0.15em",
+        "text_transform": "uppercase",
+        "color": "rgba(255,255,255,0.45)"
+      }
+    },
+
+    "spacing": {
+      "page_padding_horizontal": "32px",
+      "page_padding_vertical": "24px",
+      "nav_height": "56px",
+      "nav_item_gap": "20px",
+      "bottom_bar_height": "48px",
+      "bottom_content_padding_bottom": "28px",
+      "logo_vertical_offset": "center — légèrement au-dessus du centre géométrique",
+      "scale": [4, 8, 12, 16, 20, 24, 32, 40, 48, 64]
+    },
+
+    "border_radius": {
+      "page_container": "16px",
+      "button_pill": "999px",
+      "tag_pill": "999px"
+    },
+
+    "borders": {
+      "button_outline": "1px solid rgba(255,255,255,0.85)",
+      "tag_outline": "1px solid rgba(255,255,255,0.60)"
+    },
+
+    "shadows": {
+      "page_container": "0 8px 40px rgba(0,0,0,0.6)",
+      "logo_glow": "aucun glow — le chrome parle seul"
+    }
+  },
+
+  "layout": {
+    "container": {
+      "type": "fixed_ratio_card",
+      "aspect_ratio": "16:10",
+      "max_width": "1440px",
+      "background": "#000000",
+      "border_radius": "16px",
+      "overflow": "hidden",
+      "margin": "auto",
+      "outer_background": "#1A1A1A"
+    },
+    "grid": {
+      "type": "none — layout entièrement positionnel",
+      "description": "Pas de grid CSS classique. Positionnement absolu/flex pour chaque zone. L'absence de structure rigide EST le système."
+    },
+    "zones": {
+      "nav": "top, full-width, flex row, space-between",
+      "hero": "center absolute, logo pleine largeur",
+      "bottom_left": "absolute bottom-left, flex column, gap 8px",
+      "bottom_right": "absolute bottom-right, text-align center",
+      "footer_bar": "absolute bottom, full-width, flex row, space-between"
+    }
+  },
+
+  "components": {
+    "navigation": {
+      "structure": "flex row, space-between, align-center",
+      "padding": "24px 32px",
+      "background": "transparent",
+      "left_group": {
+        "items": ["ABOUT", "MUSIC"],
+        "separator": {
+          "type": "bullet",
+          "character": "•",
+          "color": "#FF2200",
+          "size": "6px"
+        },
+        "gap": "16px"
+      },
+      "center": {
+        "content": "DESTROY\nLONELY",
+        "style": "logo_wordmark",
+        "line_break": true,
+        "text_align": "center"
+      },
+      "right_group": {
+        "items": ["SHOP", "TOUR"],
+        "separator": {
+          "type": "bullet",
+          "character": "•",
+          "color": "#FF2200",
+          "size": "6px"
+        },
+        "gap": "16px"
+      }
+    },
+
+    "hero_logo": {
+      "type": "image",
+      "asset_description": "Logo typographique death metal chromé — fourni par l'utilisateur",
+      "positioning": "absolute, centered horizontally, vertically ~45% from top",
+      "width": "94%",
+      "object_fit": "contain",
+      "blend_mode": "normal — fond noir du PNG se fond naturellement",
+      "notes": "Aucune alternative CSS acceptable. L'asset EST le hero. Ne jamais essayer de recréer avec des fonts."
+    },
+
+    "album_tag": {
+      "type": "pill_badge",
+      "content": "• IFLOOKSCOULDKILL",
+      "prefix_dot": {
+        "color": "#FF2200",
+        "size": "5px"
+      },
+      "style": {
+        "border": "1px solid rgba(255,255,255,0.6)",
+        "border_radius": "999px",
+        "padding": "5px 12px",
+        "background": "transparent",
+        "font": "tag"
+      }
+    },
+
+    "cta_button": {
+      "type": "pill_button",
+      "content": "STREAM NOW →",
+      "arrow": "→",
+      "style": {
+        "border": "1px solid rgba(255,255,255,0.85)",
+        "border_radius": "999px",
+        "padding": "6px 14px",
+        "background": "transparent",
+        "font": "cta_button",
+        "hover_state": {
+          "background": "#FFFFFF",
+          "color": "#000000",
+          "transition": "all 0.2s ease"
+        }
+      }
+    },
+
+    "album_descriptor": {
+      "type": "text_block",
+      "content": "IF LOOKS COULD KILL IS COMPILED OF SONGS FLOATING OVER HAZY ELECTRIC GUITAR LINES WITH BLENDS OF SURREALISTIC MELODIES",
+      "style": "descriptor_text",
+      "position": "bottom-right quadrant",
+      "max_width": "220px",
+      "text_align": "center"
+    },
+
+    "footer_metadata": {
+      "left": {
+        "content": "03 - 05  \\\\  23",
+        "style": "metadata",
+        "description": "Date de sortie formatée avec séparateur backslash"
+      },
+      "right": {
+        "content": "2023",
+        "style": "metadata"
+      }
+    },
+
+    "bottom_left_cluster": {
+      "layout": "flex column, align-flex-start, gap 8px",
+      "children": ["album_tag", "cta_button"],
+      "position": "absolute, bottom 28px, left 32px"
+    }
+  },
+
+  "interaction_principles": {
+    "hover_nav": {
+      "effect": "opacity 1.0 → 0.6 on non-hovered items (dimming siblings)",
+      "transition": "opacity 0.15s ease"
+    },
+    "hover_cta": {
+      "effect": "background fill blanc, texte noir",
+      "transition": "all 0.2s ease"
+    },
+    "cursor": "default — pas de cursor custom, le design ne nécessite pas cette distraction",
+    "animations": "aucune animation décorative — mouvement uniquement si contenu audio/video actif",
+    "scroll": "page unique, pas de scroll — tout tient dans le viewport"
+  },
+
+  "do_not": [
+    "N'ajouter AUCUNE couleur en dehors de la palette noir/blanc/rouge définie",
+    "N'utiliser aucun gradient (ni de fond, ni sur le texte)",
+    "Ne jamais remplacer le logo métallique par une font web, aussi dark soit-elle",
+    "Ne pas ajouter de sections supplémentaires non présentes dans l'original",
+    "Ne pas utiliser de box-shadow coloré ou glow effect sur les composants UI",
+    "Éviter tout fond semi-transparent sur les composants (pill tags inclus — fond transparent only)",
+    "Ne pas centrer le texte descriptif à gauche — il doit rester dans le quadrant bas-droit",
+    "Ne pas utiliser d'icônes SVG décoratives dans la nav"
+  ],
+
+  "reproduction_checklist": [
+    "[ ] Fond page : #1A1A1A avec container card #000000 border-radius 16px",
+    "[ ] Nav : 3 zones flex, séparateurs rouge #FF2200, typo uppercase 11px tracking 0.12em",
+    "[ ] Logo métallique centré, width 94%, pas de recadrage",
+    "[ ] Bottom-left : tag pill + CTA pill, flex column, gap 8px",
+    "[ ] Bottom-right : bloc texte 4 lignes uppercase, couleur 55% white, max-width 220px",
+    "[ ] Footer : metadata date gauche / année droite, couleur 45% white",
+    "[ ] Aucun élément interactif beyond nav links et CTA",
+    "[ ] Breakpoint mobile : réduire logo à 100vw, stack bottom content verticalement"
+  ]
+}
