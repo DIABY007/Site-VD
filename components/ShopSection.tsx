@@ -28,7 +28,8 @@ const products: Product[] = [
 
 /**
  * ShopSection Component
- * Restored to previous proportional layout with refined centering for the image.
+ * Reproduces the merchandise shop section.
+ * Optimized: Product image and text pushed further to the right.
  */
 const ShopSection: React.FC = () => {
   return (
@@ -67,7 +68,7 @@ const ShopSection: React.FC = () => {
           {products.map((product, index) => (
             <div 
               key={product.id}
-              className={`grid grid-cols-[28%_12%_30%_30%] gap-0 py-12 ${
+              className={`grid grid-cols-[30%_15%_40%_15%] gap-0 py-12 ${
                 index !== products.length - 1 ? 'border-b border-white/10' : ''
               } items-stretch`}
             >
@@ -109,11 +110,11 @@ const ShopSection: React.FC = () => {
                 </motion.button>
               </div>
 
-              {/* COLONNE 3 — IMAGE PRODUIT (Centrée dans sa colonne) */}
-              <div className="px-8 flex justify-center items-center">
+              {/* COLONNE 3 — IMAGE PRODUIT (Poussée vers la droite) */}
+              <div className="pl-16 pr-8 flex justify-end items-center">
                 <motion.div 
                   whileHover={{ scale: 1.05 }}
-                  className="w-full h-[240px] bg-[#0A0A0A] relative overflow-hidden flex items-center justify-center border border-white/10 rounded-[2px]"
+                  className="w-full h-[240px] max-w-[240px] bg-[#0A0A0A] relative overflow-hidden flex items-center justify-center border border-white/10 rounded-[2px]"
                 >
                   <Image
                     src={product.image}
@@ -125,8 +126,8 @@ const ShopSection: React.FC = () => {
                 </motion.div>
               </div>
 
-              {/* COLONNE 4 — ESPACE NÉGATIF / DESCRIPTION */}
-              <div className="pl-6 flex flex-col justify-start uppercase">
+              {/* COLONNE 4 — LIMITED EDITION (Plus à droite) */}
+              <div className="pl-4 flex flex-col justify-start uppercase">
                 {product.description ? (
                   <>
                     <p className="text-white/50 text-[11px] tracking-[0.05em] leading-[1.8] max-w-[280px]">
@@ -139,7 +140,7 @@ const ShopSection: React.FC = () => {
                     )}
                   </>
                 ) : (
-                    <p className="text-white/30 text-[10px] tracking-[0.2em] leading-relaxed">
+                    <p className="text-white/30 text-[10px] tracking-[0.2em] leading-relaxed text-right">
                         LIMITED EDITION<br />
                         COLLECTORS ITEM<br />
                         \\\ 2023
