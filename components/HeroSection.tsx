@@ -1,10 +1,12 @@
+'use client';
+
 import React from 'react';
-import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 /**
  * HeroSection Component
  * Reproduces the Destroy Lonely "IF LOOKS COULD KILL" hero section.
- * Occupies exactly 100vh and sticks to the top without gaps.
+ * Optimized for natural flow with Framer Motion entrance animations.
  */
 const HeroSection: React.FC = () => {
   const colors = {
@@ -17,13 +19,17 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="relative w-full h-screen flex flex-col items-center bg-black overflow-hidden">
-      {/* Standardized 1000px Centered Container that takes full height */}
-      <div className="w-full max-w-[1400px] h-full px-8 sm:px-4">
-        {/* Card Container - now h-full to occupy entire height and border only on sides if needed, 
-            but here we keep it as a full box that sticks to top/bottom */}
+    <section className="relative w-full flex flex-col items-center bg-black overflow-hidden pt-12 pb-12">
+      {/* Standardized 1400px Centered Container */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="w-full max-w-[1400px] px-8 sm:px-4"
+      >
+        {/* Card Container */}
         <div 
-          className="relative w-full h-full bg-black overflow-hidden border-x border-b border-white/10"
+          className="relative w-full aspect-[16/10] bg-black overflow-hidden border-x border-b border-white/10 rounded-[4px]"
         >
           
           {/* Navigation */}
@@ -49,17 +55,27 @@ const HeroSection: React.FC = () => {
           </nav>
 
           {/* Hero Logo (Metallic Logo) */}
-          <div className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[94%] pointer-events-none">
+          <motion.div 
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
+            className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[94%] pointer-events-none"
+          >
             <img 
               src="/Image/logo-metal.png" 
               alt="Destroy Lonely Logo"
               className="w-full h-auto object-contain"
             />
-          </div>
+          </motion.div>
 
           {/* Bottom Section */}
           <div className="absolute bottom-[40px] left-[32px] right-[32px] flex justify-between items-end z-20">
-            <div className="flex flex-col items-start gap-[24px]">
+            <motion.div 
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="flex flex-col items-start gap-[24px]"
+            >
               <div className="flex flex-col items-start gap-[8px]">
                 <div 
                   className="flex items-center gap-[4px] px-[12px] py-[5px] rounded-full border text-[10px] font-normal tracking-[0.08em] text-white uppercase"
@@ -69,12 +85,14 @@ const HeroSection: React.FC = () => {
                   IFLOOKSCOULDKILL
                 </div>
 
-                <button 
-                  className="group flex items-center gap-[4px] px-[14px] py-[6px] rounded-full border text-[11px] font-normal tracking-[0.1em] text-white uppercase transition-all duration-200 ease-in-out hover:bg-white hover:text-black"
+                <motion.button 
+                  whileHover={{ scale: 1.05, backgroundColor: 'white', color: 'black' }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group flex items-center gap-[4px] px-[14px] py-[6px] rounded-full border text-[11px] font-normal tracking-[0.1em] text-white uppercase transition-colors duration-200"
                   style={{ borderColor: colors.borderCTA }}
                 >
                   STREAM NOW →
-                </button>
+                </motion.button>
               </div>
 
               <div 
@@ -83,9 +101,14 @@ const HeroSection: React.FC = () => {
               >
                 03 - 05 &nbsp;\\&nbsp; 23
               </div>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-col items-center gap-[24px] max-w-[220px]">
+            <motion.div 
+              initial={{ x: 20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="flex flex-col items-center gap-[24px] max-w-[220px]"
+            >
               <p 
                 className="text-[10.5px] font-normal tracking-[0.06em] leading-[1.7] uppercase text-center"
                 style={{ color: colors.textSecondary }}
@@ -104,11 +127,11 @@ const HeroSection: React.FC = () => {
                   2023
                 </span>
               </div>
-            </div>
+            </motion.div>
           </div>
 
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

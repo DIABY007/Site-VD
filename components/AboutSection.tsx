@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 /**
  * AboutSection Component
  * Reproduces the "WHO IS THE DESTROY LONELY?" section.
- * Occupies 100vh for vertical full-screen feel.
+ * Optimized for natural flow with scroll animations.
  */
 const AboutSection: React.FC = () => {
   const colors = {
@@ -22,18 +22,24 @@ const AboutSection: React.FC = () => {
   };
 
   return (
-    <section className="relative w-full h-screen bg-black overflow-hidden flex flex-col items-center justify-center">
+    <section className="relative w-full bg-black overflow-hidden flex flex-col items-center py-20">
       {/* Top Separator Line */}
       <div className="absolute top-0 w-full h-[1px]" style={{ backgroundColor: colors.borderSeparator }} />
 
-      {/* Standardized 1000px Centered Container */}
-      <div className="w-full max-w-[1400px] h-full relative px-8 flex flex-col justify-center border-x border-white/5">
+      {/* Standardized 1400px Centered Container */}
+      <div className="w-full max-w-[1400px] relative px-8 flex flex-col">
         {/* Decorative Crosses */}
-        <div className="absolute top-[24px] left-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
-        <div className="absolute top-[24px] right-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
+        <div className="absolute top-0 left-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
+        <div className="absolute top-0 right-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
 
         {/* Main Layout Grid */}
-        <div className="grid grid-cols-[30%_25%_45%] gap-[32px] items-center mb-[48px] mt-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="grid grid-cols-[30%_25%_45%] gap-[32px] items-center mb-[64px]"
+        >
           
           {/* Column 1: Display Title + CTA */}
           <div className="flex flex-col items-start">
@@ -55,16 +61,21 @@ const AboutSection: React.FC = () => {
               <span>SANDIMANIE III</span>
             </div>
 
-            <button 
-              className="mt-[32px] px-[16px] py-[7px] border rounded-full text-[10px] font-normal tracking-[0.1em] uppercase text-white transition-all duration-200 hover:bg-white hover:text-black"
+            <motion.button 
+              whileHover={{ scale: 1.05, backgroundColor: 'white', color: 'black' }}
+              whileTap={{ scale: 0.95 }}
+              className="mt-[32px] px-[16px] py-[7px] border rounded-full text-[10px] font-normal tracking-[0.1em] uppercase text-white transition-colors duration-200"
               style={{ borderColor: 'rgba(255,255,255,0.85)' }}
             >
               READ MORE →
-            </button>
+            </motion.button>
           </div>
 
           {/* Column 2: Artist Photo */}
-          <div className="relative aspect-[3/4] bg-white overflow-hidden">
+          <motion.div 
+            whileHover={{ scale: 1.02 }}
+            className="relative aspect-[3/4] bg-white overflow-hidden"
+          >
             <img 
               src="/Image/Artist.png" 
               alt="Destroy Lonely Artist"
@@ -73,7 +84,7 @@ const AboutSection: React.FC = () => {
             <div className="absolute bottom-[10px] left-[12px] text-[8px] font-normal tracking-[0.1em] uppercase text-black/55">
               25 \\ 05 \\ 2023
             </div>
-          </div>
+          </motion.div>
 
           {/* Column 3: Bio Text */}
           <div className="flex flex-col items-center px-[20px]">
@@ -94,10 +105,15 @@ const AboutSection: React.FC = () => {
               IF LOOKS COULD KILL, IN 2023.
             </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Ticker Section */}
-        <div className="w-full relative">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="w-full relative"
+        >
           <div className="flex justify-between items-center mb-[12px] text-[9px] font-normal tracking-[0.2em] uppercase" style={{ color: 'rgba(255,255,255,0.3)' }}>
             <span>EASED</span>
             <span>ALBUM</span>
@@ -120,11 +136,11 @@ const AboutSection: React.FC = () => {
               ))}
             </motion.div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Decorative Bottom Crosses */}
-        <div className="absolute bottom-[24px] left-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
-        <div className="absolute bottom-[24px] right-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
+        <div className="absolute bottom-0 left-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
+        <div className="absolute bottom-0 right-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
       </div>
     </section>
   );

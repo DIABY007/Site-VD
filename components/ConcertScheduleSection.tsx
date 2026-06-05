@@ -42,13 +42,19 @@ const Barcode: React.FC = () => {
 /**
  * ConcertScheduleSection Component
  * Reproduces the concert tour list.
- * Occupies 100vh for vertical full-screen feel.
+ * Optimized for natural flow with scroll animations.
  */
 const ConcertScheduleSection: React.FC = () => {
   return (
-    <section className="relative w-full h-screen bg-[#000000] text-[#FFFFFF] font-sans px-8 flex flex-col items-center justify-center overflow-hidden">
-      {/* Standardized 1000px Centered Container */}
-      <div className="w-full max-w-[1400px] flex flex-col">
+    <section className="relative w-full bg-[#000000] text-[#FFFFFF] font-sans px-8 py-20 flex flex-col items-center overflow-hidden">
+      {/* Standardized 1400px Centered Container */}
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8 }}
+        className="w-full max-w-[1400px] flex flex-col"
+      >
         
         {/* HEADER DE SECTION */}
         <div className="relative mb-12 flex justify-between items-end">
@@ -79,8 +85,12 @@ const ConcertScheduleSection: React.FC = () => {
         {/* LISTE TICKETS */}
         <div className="flex flex-col relative w-full gap-[20px]">
           {events.map((event, index) => (
-            <div 
-              key={event.id} 
+            <motion.div 
+              key={event.id}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
               className="flex relative overflow-hidden bg-[#0A0A0A] min-h-[160px] rounded-[2px]"
             >
               <div className="absolute inset-0 border border-white/30 rounded-[2px] z-10 pointer-events-none" />
@@ -128,17 +138,17 @@ const ConcertScheduleSection: React.FC = () => {
                 </div>
 
                 <motion.button
-                  whileHover={{ backgroundColor: '#FFFFFF', color: '#000000' }}
-                  transition={{ duration: 0.2 }}
-                  className="border border-white/40 rounded-full px-6 py-2 text-[0.75rem] uppercase tracking-[0.1em] text-white bg-transparent whitespace-nowrap"
+                  whileHover={{ scale: 1.05, backgroundColor: 'white', color: 'black' }}
+                  whileTap={{ scale: 0.95 }}
+                  className="border border-white/40 rounded-full px-6 py-2 text-[0.75rem] uppercase tracking-[0.1em] text-white bg-transparent whitespace-nowrap transition-colors duration-200"
                 >
                   BUY NOW →
                 </motion.button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

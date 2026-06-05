@@ -29,13 +29,19 @@ const products: Product[] = [
 /**
  * ShopSection Component
  * Reproduces the merchandise shop section.
- * Occupies 100vh for vertical full-screen feel.
+ * Optimized for natural flow with scroll animations.
  */
 const ShopSection: React.FC = () => {
   return (
-    <section className="relative w-full h-screen bg-[#000000] text-[#FFFFFF] font-sans px-8 flex flex-col items-center justify-center overflow-hidden">
-      {/* Standardized 1000px Centered Container */}
-      <div className="w-full max-w-[1400px] flex flex-col">
+    <section className="relative w-full bg-[#000000] text-[#FFFFFF] font-sans px-8 py-20 flex flex-col items-center overflow-hidden">
+      {/* Standardized 1400px Centered Container */}
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8 }}
+        className="w-full max-w-[1400px] flex flex-col"
+      >
         
         {/* HEADER DE SECTION */}
         <div className="relative flex items-center justify-between">
@@ -96,9 +102,9 @@ const ShopSection: React.FC = () => {
                 </div>
                 
                 <motion.button
-                  whileHover={{ backgroundColor: '#FFFFFF', color: '#000000' }}
-                  transition={{ duration: 0.2 }}
-                  className="border border-white/75 rounded-full px-[18px] py-[8px] text-[9px] uppercase tracking-[0.12em] text-white bg-transparent whitespace-nowrap"
+                  whileHover={{ scale: 1.05, backgroundColor: 'white', color: 'black' }}
+                  whileTap={{ scale: 0.95 }}
+                  className="border border-white/75 rounded-full px-[18px] py-[8px] text-[9px] uppercase tracking-[0.12em] text-white bg-transparent whitespace-nowrap transition-colors duration-200"
                 >
                   BUY NOW →
                 </motion.button>
@@ -106,7 +112,10 @@ const ShopSection: React.FC = () => {
 
               {/* COLONNE 3 — IMAGE PRODUIT */}
               <div className="px-8">
-                <div className="w-full h-[240px] bg-[#0A0A0A] relative overflow-hidden flex items-center justify-center border border-white/10 rounded-[2px]">
+                <motion.div 
+                  whileHover={{ scale: 1.02 }}
+                  className="w-full h-[240px] bg-[#0A0A0A] relative overflow-hidden flex items-center justify-center border border-white/10 rounded-[2px]"
+                >
                   <Image
                     src={product.image}
                     alt={product.name}
@@ -114,7 +123,7 @@ const ShopSection: React.FC = () => {
                     height={240}
                     className="object-contain w-full h-full p-4"
                   />
-                </div>
+                </motion.div>
               </div>
 
               {/* COLONNE 4 — ESPACE NÉGATIF / DESCRIPTION */}
@@ -135,7 +144,7 @@ const ShopSection: React.FC = () => {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

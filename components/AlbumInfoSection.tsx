@@ -7,13 +7,19 @@ import { motion } from 'framer-motion';
 /**
  * AlbumInfoSection Component
  * Reproduces the album metadata and track info.
- * Occupies 100vh for vertical full-screen feel.
+ * Optimized for natural flow with scroll animations.
  */
 const AlbumInfoSection: React.FC = () => {
   return (
-    <section className="relative w-full h-screen bg-[#000000] text-[#FFFFFF] font-sans px-8 flex flex-col items-center justify-center overflow-hidden">
-      {/* Standardized 1000px Centered Container */}
-      <div className="w-full max-w-[1400px] flex flex-col">
+    <section className="relative w-full bg-[#000000] text-[#FFFFFF] font-sans px-8 py-20 flex flex-col items-center overflow-hidden">
+      {/* Standardized 1400px Centered Container */}
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8 }}
+        className="w-full max-w-[1400px] flex flex-col"
+      >
         
         <div className="grid grid-cols-[45%_55%] gap-12 items-start mb-16">
           {/* COLONNE GAUCHE */}
@@ -24,7 +30,10 @@ const AlbumInfoSection: React.FC = () => {
             </div>
 
             <div className="relative mt-12 w-full max-w-[320px]">
-              <div className="aspect-square relative overflow-hidden border border-white/10">
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="aspect-square relative overflow-hidden border border-white/10"
+              >
                 <Image
                   src="/Image/Cover.jpg"
                   alt="Cover"
@@ -33,7 +42,7 @@ const AlbumInfoSection: React.FC = () => {
                   className="object-cover w-full h-full"
                   priority
                 />
-              </div>
+              </motion.div>
 
               <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-14 border border-white/80 bg-black py-[3px] px-[5px] text-center flex flex-col items-center justify-center pointer-events-none z-10">
                 <span className="text-[5px] leading-tight font-bold tracking-[0.05em]">PARENTAL</span>
@@ -112,9 +121,9 @@ const AlbumInfoSection: React.FC = () => {
 
             <div>
               <motion.button
-                whileHover={{ backgroundColor: '#FFFFFF', color: '#000000' }}
-                transition={{ duration: 0.2 }}
-                className="border-[1.5px] border-white/85 rounded-full px-[24px] py-[8px] text-[10px] uppercase tracking-[0.12em] text-white bg-transparent"
+                whileHover={{ scale: 1.05, backgroundColor: 'white', color: 'black' }}
+                whileTap={{ scale: 0.95 }}
+                className="border-[1.5px] border-white/85 rounded-full px-[24px] py-[8px] text-[10px] uppercase tracking-[0.12em] text-white bg-transparent transition-colors duration-200"
               >
                 STREAM NOW →
               </motion.button>
@@ -128,7 +137,7 @@ const AlbumInfoSection: React.FC = () => {
             <span className="text-white/20 text-[24px] font-light">+</span>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
