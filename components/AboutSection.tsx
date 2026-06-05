@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 /**
  * AboutSection Component
  * Reproduces the "WHO IS THE DESTROY LONELY?" section.
+ * Standardized with max-width 1000px for layout continuity.
  */
 const AboutSection: React.FC = () => {
   const colors = {
@@ -26,34 +27,36 @@ const AboutSection: React.FC = () => {
 
   return (
     <section 
-      className="relative w-full bg-black overflow-hidden"
+      className="relative w-full bg-black overflow-hidden flex flex-col items-center"
       style={{ fontFamily: fonts.primary }}
     >
       {/* Top Separator Line */}
       <div className="w-full h-[1px]" style={{ backgroundColor: colors.borderSeparator }} />
 
-      {/* Decorative Crosses at corners */}
-      <div className="absolute top-[24px] left-[24px] text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
-      <div className="absolute top-[24px] right-[24px] text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
-      <div className="absolute bottom-[24px] left-[24px] text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
-      <div className="absolute bottom-[24px] right-[24px] text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
+      {/* Decorative Crosses at corners (Relative to the centered container) */}
+      <div className="w-full max-w-[1000px] relative">
+        <div className="absolute top-[24px] left-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
+        <div className="absolute top-[24px] right-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
+        <div className="absolute bottom-[-64px] left-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
+        <div className="absolute bottom-[-64px] right-0 text-[16px] font-normal z-10" style={{ color: colors.plusColor }}>+</div>
+      </div>
 
-      <div className="max-w-[1440px] mx-auto px-[32px] py-[48px]">
+      <div className="w-full max-w-[1000px] px-8 py-[48px]">
         {/* Main Layout Grid */}
-        <div className="grid grid-cols-[28%_24%_48%] gap-[32px] items-center mb-[64px]">
+        <div className="grid grid-cols-[30%_25%_45%] gap-[32px] items-center mb-[64px]">
           
           {/* Column 1: Display Title + CTA */}
           <div className="flex flex-col items-start">
             <div className="flex items-center gap-[8px] mb-[12px]">
                <span className="w-[6px] h-[6px] rounded-full shrink-0" style={{ backgroundColor: colors.accentRed }}></span>
                <div className="flex flex-col leading-[0.95]">
-                 <span className="text-[52px] font-[800] tracking-[-0.02em] uppercase" style={{ color: colors.textMuted }}>WHO IS</span>
+                 <span className="text-[42px] font-[800] tracking-[-0.02em] uppercase" style={{ color: colors.textMuted }}>WHO IS</span>
                  <div className="flex items-center gap-2">
-                   <span className="text-[52px] font-[800] tracking-[-0.02em] uppercase" style={{ color: colors.textMuted }}>THE</span>
-                   <span className="text-[52px] font-[800] tracking-[-0.02em] uppercase" style={{ color: 'rgba(255,255,255,0.5)' }}>—</span>
+                   <span className="text-[42px] font-[800] tracking-[-0.02em] uppercase" style={{ color: colors.textMuted }}>THE</span>
+                   <span className="text-[42px] font-[800] tracking-[-0.02em] uppercase" style={{ color: 'rgba(255,255,255,0.5)' }}>—</span>
                  </div>
-                 <span className="text-[52px] font-[800] tracking-[-0.02em] uppercase ml-[40px]" style={{ color: colors.textMuted }}>DESTROY</span>
-                 <span className="text-[52px] font-[800] tracking-[-0.02em] uppercase ml-[40px]" style={{ color: colors.textMuted }}>LONELY?</span>
+                 <span className="text-[42px] font-[800] tracking-[-0.02em] uppercase ml-[30px]" style={{ color: colors.textMuted }}>DESTROY</span>
+                 <span className="text-[42px] font-[800] tracking-[-0.02em] uppercase ml-[30px]" style={{ color: colors.textMuted }}>LONELY?</span>
                </div>
             </div>
 
@@ -113,7 +116,7 @@ const AboutSection: React.FC = () => {
         {/* Ticker Section */}
         <div className="w-full">
           {/* Ticker Metadata Bar */}
-          <div className="flex justify-between items-center mb-[12px] px-[32px] text-[9px] font-normal tracking-[0.2em] uppercase" style={{ color: 'rgba(255,255,255,0.3)' }}>
+          <div className="flex justify-between items-center mb-[12px] text-[9px] font-normal tracking-[0.2em] uppercase" style={{ color: 'rgba(255,255,255,0.3)' }}>
             <span>EASED</span>
             <span>ALBUM</span>
             <span>2023</span>
@@ -125,17 +128,13 @@ const AboutSection: React.FC = () => {
 
           {/* Scrolling Ticker */}
           <div className="relative overflow-hidden whitespace-nowrap py-2">
-            {/* Decorative crosses in ticker area */}
-            <div className="absolute left-[32px] top-1/2 -translate-y-1/2 text-[18px] font-normal" style={{ color: 'rgba(255,255,255,0.2)' }}>+</div>
-            <div className="absolute right-[32px] top-1/2 -translate-y-1/2 text-[18px] font-normal" style={{ color: 'rgba(255,255,255,0.2)' }}>+</div>
-
             <motion.div 
               className="inline-block"
               animate={{ x: ["0%", "-33.33%"] }}
               transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
             >
               {[1, 2, 3].map((i) => (
-                <span key={i} className="text-[72px] font-[900] tracking-[-0.02em] uppercase px-4" style={{ color: colors.tickerText }}>
+                <span key={i} className="text-[52px] font-[900] tracking-[-0.02em] uppercase px-4" style={{ color: colors.tickerText }}>
                   STREAM IF LOOKS COULD KILL NOW <span className="mx-4 text-[12px] align-middle" style={{ color: colors.accentRed }}>•</span>
                 </span>
               ))}
