@@ -3,8 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --background: #1A1A1A;
+  --background: #000000;
   --foreground: #FFFFFF;
+}
+
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -12,4 +17,10 @@ body {
   background: var(--background);
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+}
+
+section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
