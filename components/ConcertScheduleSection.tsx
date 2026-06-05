@@ -105,48 +105,48 @@ const ConcertScheduleSection: React.FC = () => {
             >
               <div className="absolute inset-0 border border-white/30 rounded-[2px] z-10 pointer-events-none" />
 
-              {/* CONTENU PRINCIPAL (Flex Row pour aligner Barcode et Divider) */}
-              <div className="flex w-full items-stretch relative z-20">
+              {/* CONTENU PRINCIPAL (Flex Row sur Desktop, Column sur Mobile) */}
+              <div className="flex flex-col md:flex-row w-full items-stretch relative z-20">
                 
-                {/* GAUCHE - INFOS (65% environ) */}
-                <div className="flex flex-grow flex-col justify-between uppercase px-12 py-10">
+                {/* GAUCHE - INFOS (65% environ sur desktop) */}
+                <div className="flex flex-grow flex-col justify-between uppercase px-8 md:px-12 py-8 md:py-10 text-center md:text-left">
                   <div>
-                    <h3 className="text-[1.5rem] font-[600] tracking-[0.05em] text-white mb-3">
+                    <h3 className="text-[1.2rem] md:text-[1.5rem] font-[600] tracking-[0.05em] text-white mb-3">
                       {event.name}
                     </h3>
-                    <p className="text-[0.95rem] tracking-[0.05em] leading-[1.4] text-[#a0a0a0] whitespace-pre-line">
+                    <p className="text-[0.85rem] md:text-[0.95rem] tracking-[0.05em] leading-[1.4] text-[#a0a0a0] whitespace-pre-line">
                       {event.location}
                     </p>
                   </div>
 
-                  <div className="flex flex-row items-center gap-[12px] mt-8">
-                    <span className="text-[0.95rem] tracking-[0.05em] text-[#a0a0a0]">
+                  <div className="flex flex-row items-center justify-center md:justify-start gap-[12px] mt-6 md:mt-8">
+                    <span className="text-[0.85rem] md:text-[0.95rem] tracking-[0.05em] text-[#a0a0a0]">
                       {event.date}
                     </span>
                     <span className="text-[#ff3333] text-[6px] leading-none">●</span>
-                    <span className="text-[0.95rem] tracking-[0.05em] text-[#a0a0a0]">
+                    <span className="text-[0.85rem] md:text-[0.95rem] tracking-[0.05em] text-[#a0a0a0]">
                       {event.time}
                     </span>
                   </div>
                 </div>
 
-                {/* CENTRE - BARCODE (Identique en hauteur au Divider) */}
-                <div className="flex items-stretch py-10 pr-10">
+                {/* CENTRE - BARCODE (Caché sur mobile pour gagner de la place) */}
+                <div className="hidden md:flex items-stretch py-10 pr-10">
                    <Barcode />
                 </div>
 
-                {/* DIVIDER & NOTCHES (Strictement parallèle au Barcode) */}
-                <div className="relative w-px self-stretch flex flex-col justify-between items-center flex-shrink-0">
-                    <div className="absolute inset-y-0 left-0 border-l border-dashed border-white/40" />
-                    <div className="w-[28px] h-[28px] rounded-full bg-black border border-white/30 z-50 -mt-3.5 -ml-[0.5px] flex-shrink-0" />
-                    <div className="w-[28px] h-[28px] rounded-full bg-black border border-white/30 z-50 -mb-3.5 -ml-[0.5px] flex-shrink-0" />
+                {/* DIVIDER & NOTCHES (Horizontal sur Mobile, Vertical sur Desktop) */}
+                <div className="relative w-full h-px md:w-px md:h-auto self-stretch flex flex-row md:flex-col justify-between items-center flex-shrink-0">
+                    <div className="absolute inset-x-0 top-0 md:inset-y-0 md:left-0 border-t md:border-t-0 md:border-l border-dashed border-white/40 w-full md:w-auto h-px md:h-auto" />
+                    <div className="w-[20px] h-[20px] md:w-[28px] md:h-[28px] rounded-full bg-black border border-white/30 z-50 -ml-2.5 md:-ml-[14px] flex-shrink-0 hidden md:flex" />
+                    <div className="w-[20px] h-[20px] md:w-[28px] md:h-[28px] rounded-full bg-black border border-white/30 z-50 -mr-2.5 md:-mb-3.5 md:-ml-[14px] flex-shrink-0 hidden md:flex" />
                 </div>
 
-                {/* DROITE - TICKET TYPE + CTA (30% environ) */}
-                <div className="flex w-[30%] flex-col justify-center items-center px-12 py-10 gap-8">
+                {/* DROITE - TICKET TYPE + CTA (30% environ sur desktop) */}
+                <div className="flex w-full md:w-[30%] flex-col justify-center items-center px-8 md:px-12 py-8 md:py-10 gap-6 md:gap-8">
                   <div className="text-center uppercase">
                     {event.typeLines.map((line, i) => (
-                      <p key={i} className="text-[0.85rem] tracking-[0.05em] text-[#a0a0a0] leading-tight">
+                      <p key={i} className="text-[0.75rem] md:text-[0.85rem] tracking-[0.05em] text-[#a0a0a0] leading-tight">
                         {line}
                       </p>
                     ))}
@@ -156,11 +156,12 @@ const ConcertScheduleSection: React.FC = () => {
                     href={getWhatsAppLink(event.name)}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="w-full sm:w-auto"
                   >
                     <motion.button
                       whileHover={{ scale: 1.05, backgroundColor: 'white', color: 'black' }}
                       whileTap={{ scale: 0.95 }}
-                      className="border border-white/40 rounded-full px-8 py-3 text-[0.85rem] uppercase tracking-[0.1em] text-white bg-transparent whitespace-nowrap transition-colors duration-200"
+                      className="w-full sm:w-auto border border-white/40 rounded-full px-8 py-3 text-[0.8rem] md:text-[0.85rem] uppercase tracking-[0.1em] text-white bg-transparent whitespace-nowrap transition-colors duration-200 min-h-[44px]"
                     >
                       ACHETER →
                     </motion.button>

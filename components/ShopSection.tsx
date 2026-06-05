@@ -74,20 +74,20 @@ const ShopSection: React.FC = () => {
           {products.map((product, index) => (
             <div 
               key={product.id}
-              className={`grid grid-cols-[30%_15%_40%_15%] gap-0 py-12 ${
+              className={`flex flex-col lg:grid lg:grid-cols-[30%_15%_40%_15%] gap-8 lg:gap-0 py-10 md:py-12 ${
                 index !== products.length - 1 ? 'border-b border-white/10' : ''
               } items-stretch`}
             >
               {/* COLONNE 1 — NOM + PRIX + EXPÉDITION */}
-              <div className="flex flex-col h-full uppercase">
-                <h3 className="text-[14px] font-[600] tracking-[0.08em] mb-[10px] text-white">
+              <div className="flex flex-col h-full uppercase text-center lg:text-left">
+                <h3 className="text-[13px] md:text-[14px] font-[600] tracking-[0.08em] mb-[8px] md:mb-[10px] text-white">
                   {product.name}
                 </h3>
-                <span className="text-[14px] font-[700] tracking-[0.05em] mb-auto text-white">
+                <span className="text-[13px] md:text-[14px] font-[700] tracking-[0.05em] mb-4 md:mb-auto text-white">
                   {product.price}
                 </span>
                 
-                <div className="mt-auto">
+                <div className="mt-auto hidden lg:block">
                   <p className="text-white/35 text-[9px] uppercase tracking-[0.15em] leading-none">
                     LIVRAISON EN
                   </p>
@@ -97,36 +97,11 @@ const ShopSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* COLONNE 2 — TAGS + ACHETER */}
-              <div className="flex flex-col items-end h-full">
-                <div className="text-right mb-auto uppercase">
-                  {product.tags.map((tag, i) => (
-                    <p key={i} className="text-white/40 text-[9px] uppercase tracking-[0.1em] leading-[1.9]">
-                      {tag}
-                    </p>
-                  ))}
-                </div>
-                
-                <a 
-                  href={getWhatsAppLink(product.name)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <motion.button
-                    whileHover={{ scale: 1.05, backgroundColor: 'white', color: 'black' }}
-                    whileTap={{ scale: 0.95 }}
-                    className="border border-white/75 rounded-full px-[18px] py-[8px] text-[9px] uppercase tracking-[0.12em] text-white bg-transparent whitespace-nowrap transition-colors duration-200"
-                  >
-                    ACHETER →
-                  </motion.button>
-                </a>
-              </div>
-
-              {/* COLONNE 3 — IMAGE PRODUIT */}
-              <div className="pl-16 pr-8 flex justify-end items-center">
+              {/* COLONNE 3 (MOBILE ORDER) — IMAGE PRODUIT */}
+              <div className="lg:pl-16 lg:pr-8 flex justify-center items-center order-first lg:order-none">
                 <motion.div 
                   whileHover={{ scale: 1.05 }}
-                  className="w-full h-[240px] max-w-[240px] bg-[#0A0A0A] relative overflow-hidden flex items-center justify-center border border-white/10 rounded-[2px]"
+                  className="w-full h-[200px] md:h-[240px] max-w-[200px] md:max-w-[240px] bg-[#0A0A0A] relative overflow-hidden flex items-center justify-center border border-white/10 rounded-[2px]"
                 >
                   <Image
                     src={product.image}
@@ -138,11 +113,11 @@ const ShopSection: React.FC = () => {
                 </motion.div>
               </div>
 
-              {/* COLONNE 4 — ÉDITION LIMITÉE */}
-              <div className="pl-4 flex flex-col justify-start uppercase">
+              {/* COLONNE 4 (MOBILE ORDER) — DESCRIPTION / ÉDITION LIMITÉE */}
+              <div className="lg:pl-4 flex flex-col justify-center lg:justify-start uppercase text-center lg:text-right">
                 {product.description ? (
                   <>
-                    <p className="text-white/50 text-[11px] tracking-[0.05em] leading-[1.8] max-w-[280px]">
+                    <p className="text-white/50 text-[10px] md:text-[11px] tracking-[0.05em] leading-[1.8] max-w-[280px] mx-auto lg:ml-auto">
                       {product.description}
                     </p>
                     {product.note && (
@@ -152,12 +127,38 @@ const ShopSection: React.FC = () => {
                     )}
                   </>
                 ) : (
-                    <p className="text-white/30 text-[10px] tracking-[0.2em] leading-relaxed text-right">
+                    <p className="text-white/30 text-[9px] md:text-[10px] tracking-[0.2em] leading-relaxed">
                         ÉDITION LIMITÉE<br />
                         ARTICLE COLLECTOR<br />
                         \\\ 2025
                     </p>
                 )}
+              </div>
+
+              {/* COLONNE 2 — TAGS + ACHETER */}
+              <div className="flex flex-col items-center lg:items-end h-full gap-6 lg:gap-0">
+                <div className="text-center lg:text-right mb-auto uppercase hidden lg:block">
+                  {product.tags.map((tag, i) => (
+                    <p key={i} className="text-white/40 text-[9px] uppercase tracking-[0.1em] leading-[1.9]">
+                      {tag}
+                    </p>
+                  ))}
+                </div>
+                
+                <a 
+                  href={getWhatsAppLink(product.name)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full lg:w-auto"
+                >
+                  <motion.button
+                    whileHover={{ scale: 1.05, backgroundColor: 'white', color: 'black' }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full lg:w-auto border border-white/75 rounded-full px-8 lg:px-[18px] py-3 lg:py-[8px] text-[10px] lg:text-[9px] uppercase tracking-[0.12em] text-white bg-transparent whitespace-nowrap transition-colors duration-200 min-h-[44px]"
+                  >
+                    ACHETER →
+                  </motion.button>
+                </a>
               </div>
             </div>
           ))}
